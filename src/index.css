@@ -42,4 +42,13 @@
     transform: translateY(-4px);
     box-shadow: 0 20px 60px rgba(232,255,71,0.1);
   }
+  
+  /* Added specific animations required by the modal component */
+  .animate-in { animation-fill-mode: both; }
+  .fade-in { animation-name: fadeIn; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

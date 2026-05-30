@@ -3,9 +3,9 @@ import { ExternalLink, Terminal } from "lucide-react";
 const projects = [
   {
     num: "01",
-    title: "ShopFlow",
-    desc: "A full-stack e-commerce platform with real-time inventory, Stripe payments, and an admin dashboard. Built for scale with Next.js and PostgreSQL.",
-    tags: ["Next.js", "PostgreSQL", "Stripe", "Tailwind"],
+    title: "CookbotAI",
+    desc: "AI-powered recipe generator that creates personalized meal ideas based on user preferences, dietary restrictions, and available ingredients.",
+    tags: ["Vite", "TypeScript", "Node.js", "Python", "OpenAI API"],
     live: "#",
     repo: "#",
     featured: true,
@@ -13,53 +13,13 @@ const projects = [
   },
   {
     num: "02",
-    title: "TaskHive",
-    desc: "Real-time project management app with WebSockets, drag-and-drop boards, team collaboration, and role-based access control.",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-    live: "#",
-    repo: "#",
+    title: "E-Jeepney System",
+    desc: "A comprehensive E-Jeepney System that integrates both a mobile application and a web application represents the digital backbone of the Philippines' Public Utility Vehicle Modernization Program",
+    tags: ["React", "Node.js", "Vite + TypeScript", "Geospatial APIs", "Real-time Tracking"],
+    live: "https://e-jeepney-system.vercel.app",
+    repo: "https://github.com/nikaver09/E-jeepney-system.git",
     featured: true,
     accent: "#ff4d6d",
-  },
-  {
-    num: "03",
-    title: "WeatherLens",
-    desc: "Beautiful weather visualization app with animated maps, 7-day forecasts, and location-based alerts using OpenWeatherMap API.",
-    tags: ["React", "D3.js", "OpenWeather API"],
-    live: "#",
-    repo: "#",
-    featured: false,
-    accent: "#47d7ff",
-  },
-  {
-    num: "04",
-    title: "DocuMind",
-    desc: "AI-powered document assistant that allows users to chat with their PDFs using LangChain, vector embeddings, and OpenAI.",
-    tags: ["Python", "FastAPI", "LangChain", "React"],
-    live: "#",
-    repo: "#",
-    featured: false,
-    accent: "#b347ff",
-  },
-  {
-    num: "05",
-    title: "Portfolix",
-    desc: "Drag-and-drop portfolio builder with customizable themes, analytics, and one-click deployment to Vercel.",
-    tags: ["Next.js", "Prisma", "Vercel API"],
-    live: "#",
-    repo: "#",
-    featured: false,
-    accent: "#ff9147",
-  },
-  {
-    num: "06",
-    title: "ChartKit",
-    desc: "An open-source React component library for data visualization with 20+ chart types, dark mode, and full TypeScript support.",
-    tags: ["TypeScript", "D3.js", "Storybook", "Vitest"],
-    live: "#",
-    repo: "#",
-    featured: false,
-    accent: "#47ff91",
   },
 ];
 
@@ -77,7 +37,7 @@ export default function Projects() {
             Selected <span className="text-accent">work</span>
           </h2>
           <a
-            href="https://github.com"
+            href="https://github.com/nikaver09"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-ghost hover:text-accent font-mono text-sm transition-colors uppercase tracking-widest"

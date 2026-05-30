@@ -2,9 +2,9 @@ import { useEffect, useRef } from "react";
 import { ArrowDownRight, Terminal, Link, Globe } from "lucide-react";
 
 const socials = [
-  { icon: Terminal, href: "https://github.com", label: "GitHub" },
-  { icon: Link, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Globe, href: "https://twitter.com", label: "Twitter" },
+  { icon: Terminal, href: "https://github.com/nikaver09", label: "GitHub" },
+  { icon: Link, href: "#", label: "LinkedIn" },
+  { icon: Globe, href: "https://www.facebook.com/neysoo900/", label: "Twitter" },
 ];
 
 export default function Hero() {

@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         <span className="font-display text-2xl text-accent tracking-widest">nEKs</span>
         <p className="font-mono text-xs text-ghost text-center">
-          Designed & built with ❤️ — {new Date().getFullYear()}
+          Designed & built with {new Date().getFullYear()}
         </p>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

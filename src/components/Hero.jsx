@@ -118,12 +118,6 @@ export default function Hero() {
                   <p className="font-body text-xs font-semibold uppercase tracking-wider">Years exp.</p>
                 </div>
 
-                {/* Projects Badge */}
-                <div className="absolute -top-4 -right-6 bg-card border border-muted/40 px-5 py-3 rounded-2xl shadow-xl animate-float" style={{ animationDelay: "2s" }}>
-                  <p className="font-display text-3xl leading-none text-accent">20+</p>
-                  <p className="font-mono text-xs text-ghost uppercase tracking-wider">Projects</p>
-                </div>
-                
                 {/* Decorative Accent Border */}
                 <div className="absolute inset-0 rounded-3xl border-2 border-accent/10 scale-105 pointer-events-none" />
               </div>

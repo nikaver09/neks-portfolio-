@@ -1,4 +1,5 @@
 import { Code2, Palette, Zap, Users } from "lucide-react";
+import { motion } from "framer-motion";
 
 const traits = [
   { icon: Code2, title: "Clean Code", desc: "Writing readable, maintainable, and scalable code is not optional — it's the standard." },
@@ -9,17 +10,31 @@ const traits = [
 
 export default function About() {
   return (
-    <section id="about" className="py-28 lg:py-36">
+    <section id="about" className="py-28 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        
         {/* Section label */}
-        <div className="flex items-center gap-4 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-4 mb-16"
+        >
           <span className="font-mono text-xs text-accent uppercase tracking-[0.3em]">01 — About</span>
           <div className="flex-1 h-px bg-muted/30" />
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          {/* Left */}
-          <div className="space-y-8">
+          
+          {/* Left Side Content */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
             <h2 className="font-heading font-bold text-4xl lg:text-5xl leading-tight">
               Building the web,<br />
               <span className="text-accent">one pixel</span> at a time.
@@ -38,7 +53,7 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-3 gap-6 pt-4">
-              {[["3+", "Years Exp."], ["20+", "Projects"], ["15+", "Happy Clients"]].map(([num, label]) => (
+              {[["3+", "Years Exp."], ["20+", "Projects"],].map(([num, label]) => (
                 <div key={label} className="space-y-1">
                   <p className="font-display text-4xl text-accent">{num}</p>
                   <p className="font-mono text-xs text-ghost uppercase tracking-widest">{label}</p>
@@ -52,13 +67,17 @@ export default function About() {
             >
               Download CV
             </a>
-          </div>
+          </motion.div>
 
           {/* Right — trait cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {traits.map(({ icon: Icon, title, desc }) => (
-              <div
+            {traits.map(({ icon: Icon, title, desc }, index) => (
+              <motion.div
                 key={title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
                 className="card-hover bg-card border border-muted/30 rounded-2xl p-6 space-y-4"
               >
                 <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center">
@@ -66,9 +85,10 @@ export default function About() {
                 </div>
                 <h3 className="font-heading font-semibold text-snow">{title}</h3>
                 <p className="font-body text-ghost text-sm leading-relaxed">{desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
+          
         </div>
       </div>
     </section>

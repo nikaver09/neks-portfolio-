@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 // Added "Educational Tour" to the links array
-const links = ["About", "Skills", "Projects", "Experience", "Educational Tour", "Contact"];
+const links = ["About", "Skills", "Projects", "Experience", "Contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);

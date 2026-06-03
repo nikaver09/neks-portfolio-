@@ -36,11 +36,11 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              <a href="mailto:hello@neks.dev" className="flex items-center gap-4 text-ghost hover:text-accent transition-colors group">
+              <a href="mailto:nkavs777@gmail.com" className="flex items-center gap-4 text-ghost hover:text-accent transition-colors group">
                 <div className="w-10 h-10 bg-card border border-muted/40 rounded-xl flex items-center justify-center group-hover:border-accent/50 transition-colors">
                   <Mail size={18} />
                 </div>
-                <span className="font-body">hello@neks.dev</span>
+                <span className="font-body">nkavs777@gmail.com</span>
               </a>
               <div className="flex items-center gap-4 text-ghost">
                 <div className="w-10 h-10 bg-card border border-muted/40 rounded-xl flex items-center justify-center">
@@ -52,9 +52,9 @@ export default function Contact() {
 
             <div className="flex gap-4 pt-4">
               {[
-                { icon: Terminal, href: "https://github.com", label: "GitHub" },
-                { icon: Link, href: "https://linkedin.com", label: "LinkedIn" },
-                { icon: Globe, href: "https://twitter.com", label: "Twitter" },
+                { icon: Terminal, href: "https://github.com/nikaver09", label: "GitHub" },
+                { icon: Link, href: "https://www.linkedin.com/in/nkewi-undefined-1096ba413/", label: "LinkedIn" },
+                { icon: Globe, href: "https://www.facebook.com/neysoo900", label: "Facebook" },
               ].map(({ icon: Icon, href, label }) => (
                 <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                   className="w-12 h-12 bg-card border border-muted/40 rounded-xl flex items-center justify-center text-ghost hover:text-accent hover:border-accent/50 transition-all hover:scale-110">

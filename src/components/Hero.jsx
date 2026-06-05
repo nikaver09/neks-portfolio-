@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { ArrowDownRight, Terminal, Link, Globe } from "lucide-react";
+import { ArrowDownRight, Terminal, Link, Globe, GraduationCap } from "lucide-react";
 
 const socials = [
   { icon: Terminal, href: "https://github.com/nikaver09", label: "GitHub" },
-  { icon: Link, href: "#", label: "LinkedIn" },
+  { icon: Link, href: "https://www.linkedin.com/in/nkewi-undefined-1096ba413/", label: "LinkedIn" },
   { icon: Globe, href: "https://www.facebook.com/neysoo900/", label: "Twitter" },
 ];
 
-export default function Hero() {
+export default function Hero({ onNavigateToTour }) {
   const cursorRef = useRef(null);
 
   useEffect(() => {
@@ -62,10 +62,9 @@ export default function Hero() {
               </h2>
             </div>
 
-            <p className="font-body text-ghost text-lg leading-relaxed max-w-md animate-fade-up" style={{ animationDelay: "0.2s", opacity: 0 }}>
-              Passionate developer specializing in building exceptional digital products. From concept to deployment — clean code, sharp design, real impact.
-            </p>
+    
 
+            {/* CTA Button Group Container */}
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
               <button
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
@@ -74,6 +73,16 @@ export default function Hero() {
                 View Work
                 <ArrowDownRight size={18} className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
               </button>
+
+              {/* Educational Tour Button linked to callback state hook */}
+              <button
+                onClick={onNavigateToTour}
+                className="flex items-center gap-2 border border-muted/50 text-snow font-heading font-medium px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-200 uppercase tracking-wider text-sm"
+              >
+                <GraduationCap size={18} />
+                Educational Tour
+              </button>
+
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="flex items-center gap-2 border border-muted/50 text-snow font-heading font-medium px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-200 uppercase tracking-wider text-sm"
@@ -94,31 +103,24 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Image Card & Badges */}
+          {/* Right Column: Image Card */}
           <div className="flex justify-center lg:justify-end animate-fade-in" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <div className="relative">
               <div className="relative w-72 h-72 lg:w-96 lg:h-96">
-                
-                {/* Main Image Container */}
                 <div className="relative w-full h-full rounded-3xl bg-card border border-muted/30 overflow-hidden glow group">
-                  {/* Replace this src with your own image URL */}
                   <img 
                     src="/images2/profs1.jpg" 
                     alt="Developer Portrait" 
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
                   />
-                  
-                  {/* Dark gradient overlay to blend the image into your site's aesthetic */}
                   <div className="absolute inset-0 bg-gradient-to-br from-ink/80 via-transparent to-ink/60 pointer-events-none"></div>
                 </div>
 
-                {/* Years Experience Badge */}
                 <div className="absolute -bottom-4 -left-6 bg-accent text-ink px-5 py-3 rounded-2xl shadow-xl animate-float">
                   <p className="font-display text-3xl leading-none">3+</p>
                   <p className="font-body text-xs font-semibold uppercase tracking-wider">Years exp.</p>
                 </div>
 
-                {/* Decorative Accent Border */}
                 <div className="absolute inset-0 rounded-3xl border-2 border-accent/10 scale-105 pointer-events-none" />
               </div>
             </div>

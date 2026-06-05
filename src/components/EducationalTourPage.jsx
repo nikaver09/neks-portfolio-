@@ -6,83 +6,74 @@ const tourData = {
   subtitle: "A detailed tour through my academic milestones, technical achievements, and continuous learning path.",
   milestones: [
     {
+      id: "init", 
       type: "Tour Companies",
       title: "UP Cebu Business Incubator for Information Technology (UP CeBu InIT)",
       institution: "University of the Philippines Cebu",
       location: "Cebu City, Philippines",
       date: "2025 — Present",
-      details: [
-        "A program at University of the Philippines Cebu, established in 2010 with the Department of Science and Technology (DOST), to support startups and innovators in the IT sector. It provides services like mentorship, training, venture financing, and referrals to help businesses grow from idea development to commercialization."
-      ],
-      journalEntry: "Observations: I observed that they value innovation and try to help achieve and provide sustainable solutions to problems thus helping startups and students by providing guidance.\n\nLearnings: I learned to be resourceful with my ideas to solve a problem like using current trends to inefficient systems to improve it.",
+      details: ["The UP Cebu Business Incubator for Information Technology (inIT) is a premier Technology Business Incubator (TBI) located on the 3rd floor of the Arts and Sciences Building at the University of the Philippines Cebu in Lahug, Cebu City."],
+      journalEntry: "The UP Cebu Business Incubator for Information Technology (UP CeBu InIT), established in 2010 through a joint initiative by UP Cebu and the Department of Science and Technology (DOST), is widely recognized as one of the most mature and successful Technology Business Incubators (TBIs) in the Philippines.\n\nLearnings: Analyzing its trajectory yields several notable observations and key institutional learnings regarding how tech ecosystems can thrive in a regional setting.",
       floatingImage: "/images2/cebuinit.jpg", 
       viewerImage: "/images2/pic23.png",   
       link: { url: "https://upcebu.edu.ph", label: "Visit Portal" }
     },
     {
+      id: "dynata",
       type: "Tour Companies",
       title: "Dynata Philippines Inc.",
       institution: "Tech Bootcamp",
       location: "Remote / Online",
-      date: "2021 — 2022",
-      details: [
-        "Completed 500+ hours of rigorous coding tasks focusing on JavaScript frameworks. Deep-dived into building production-ready, accessible, and responsive applications while mastering server management, RESTful API design, and database queries."
-      ],
-      journalEntry: "Observations: The pacing was intense but perfectly mirrored real-world agile development cycles. \n\nLearnings: Building RESTful APIs from scratch taught me resilience and built the exact muscle memory required to ship production-ready applications.",
+      date: "2025 — Present",
+      details: ["Dynata Philippines, Inc. is the local operating arm of Dynata, the world’s largest single provider of first-party data and insights. Operating primarily as a high-value Knowledge Process Outsourcing (KPO) center, the Philippine entity supports global market research firms, media agencies, management consultancies, and corporate brands by transforming raw human responses into structured marketing assets."],
+      journalEntry: "Despite a devastating domestic workplace tragedy in 2017 (the Davao fire) and a complex global corporate debt restructuring in 2024, Dynata’s operations in Cebu remained a secure, highly protected, and indispensable hub for the global parent company. \n\nLearnings: Universal Business Principle: Long-term business resilience and operational stickiness are achieved by upskilling a workforce from basic execution to specialized knowledge work. Furthermore, corporate safety and infrastructure compliance are not optional expenses—they are foundational to risk management and brand survival.",
       floatingImage: "/images2/dynata.png", 
       viewerImage: "/images2/dynatass.jfif",   
       link: { url: "https://your-certificate-url.com", label: "View Credential" }
     },
     {
+      id: "rivan",
       type: "Tour Companies",
       title: "Rivan IT Cebu",
       institution: "Various Tech Firms & Startups",
       location: "Cebu City, Cebu",
-      date: "Day 2",
-      details: [
-        "Interacted with senior software engineers and learned about real-world agile workflows. Toured modern startup offices and observed enterprise-level server infrastructures while attending seminars on the growing tech industry in the Visayas region."
-      ],
-      journalEntry: "Observations: Walking through Cebu IT Park, the energy of the tech industry was palpable. Teams collaborated seamlessly across modern open-office layouts.\n\nLearnings: It deeply validated my passion for the IT field and showed me the massive infrastructure required to keep global apps running.",
+      date: "2025 — Present",
+      details: ["officially operating under the RivanCyber Training Institute / Rivan IT Training Systems Corp.) is a prominent private technology bootcamp provider in the Philippines. It operates as an industry finishing school designed to fast-track career progression or bridge the gap for career shifters looking to break into enterprise networking, cloud infrastructure, and cybersecurity."],
+      journalEntry: "Observations: Rivan IT Cebu established a highly popular market niche in the Central Visayas region by providing intensive, practical bootcamps specifically for network engineering (Cisco CCNA/CCNP) and cybersecurity, attracting a massive wave of both active IT professionals and non-tech career shifters.\n\nLearnings: Universal Business Principle: In the technology training sector, hyper-specialization in core infrastructure yields stronger market defense than generic software development courses. Private educational ventures can find immense commercial success not by competing with traditional university degrees, but by functioning as specialized finishing schools that turn complex, high-barrier enterprise certifications into structured, repeatable, and practical blueprints for career shifters.",
       floatingImage: "/images2/rivan.png", 
       viewerImage: "/images2/rivan.jfif",   
       link: { url: "https://cebuitpark.com", label: "Explore IT Park" }
     },
     {
+      id: "mata",
       type: "Tour Companies",
       title: "Mata Technologies Inc.",
       institution: "Bohol Conservation Center",
       location: "Bohol, Philippines",
-      date: "Day 2",
-      details: [
-        "Studied local conservation efforts for the endangered Philippine Tarsier.",
-        "Analyzed the unique geological formations of the Chocolate Hills.",
-        "Discussed sustainable tourism practices and the role of technology in environmental monitoring."
-      ],
-      journalEntry: "Our trip to Bohol was a stark, beautiful contrast to the concrete tech hubs of Cebu. Seeing the tiny, delicate Tarsiers up close and witnessing the vast expanse of the Chocolate Hills reminded me of the broader world our technology serves.",
+      date: "2025 — Present",
+      details: ["Mata Technologies Inc. (commercially operating as both Mata Tech and Mata Services) is a registered technology startup in the Philippines (SEC No. 2022040049468-56). The company bridges the gap between high-end interactive media production and enterprise software engineering. "],
+      journalEntry: "Observations: Mata Technologies Inc. successfully transitioned from a niche, homegrown Virtual Reality (VR) and 360° media pioneer focused on localized real estate and tourism mapping into a globally facing IT staff augmentation and full-stack software development agency.\n\nLearnings: Universal Business Principle: For a tech startup, long-term scalability requires the flexibility to pivot from a hyper-localized feature to a global ecosystem solution. While cutting-edge technology (like VR and 360° media) is excellent for creating a loud market entry and establishing technical authority, anchoring the business model around recurring, high-demand services—such as software development and global talent outsourcing—is what ensures sustainable, high-margin revenue and long-term enterprise growth.",
       floatingImage: "/images2/mata1.png", 
-      viewerImage: "/images2/matas666.jpg",   
+      viewerImage: "/images2/dynatass.jfif",   
       link: { url: "https://tourism.bohol.gov.ph", label: "Discover Bohol" }
     },
     {
+      id: "tarsier",
       type: "Tour Companies",
       title: "T.A.R.S.I.E.R 117",
       institution: "National Historical Commission",
       location: "Cebu City, Cebu",
-      date: "Day 3",
-      details: [
-        "Visited Magellan's Cross and the Basilica Minore del Santo Niño.",
-        "Documented centuries-old architecture and urban planning.",
-        "Gained a deeper understanding of the socio-cultural foundations of the Philippines."
-      ],
-      journalEntry: "To understand the future, you have to look at the past. Standing in front of Magellan's Cross and walking the halls of the Basilica, we were tracing the very roots of Philippine history. We documented the colonial architecture and discussed how historic cities adapt to modern infrastructure.",
-      floatingImage: "/images2/tarshier.png", 
+      date: "2025 — Present",
+      details: ["T.A.R.S.I.E.R 117 (Telephone and Radio System Integrated Emergency Response) functions as the specialized emergency communications, dispatch,"],
+       journalEntry: "Observations: Before its inception, local emergency response was heavily siloed across municipalities. T.A.R.S.I.E.R 117 successfully consolidated multiple agencies (BFP, PNP, PCG) into a single, three-digit hotline (117) operating from a central, 24/7 command center monitoring over 150 live CCTV feeds. \n\nLearnings: The fundamental breakdown in emergency services rarely stems from a lack of trucks or gear; it stems from operational friction. By creating a single point of communication (117) and eliminating the multi-agency bureaucratic wall, T.A.R.S.I.E.R 117 proved that unifying communications can instantly optimize asset utilization.",
+      floatingImage: "/images2/tarshier.png", // Fixed path resolution
       viewerImage: "/images2/tars.jfif",   
       link: { url: "https://www.cebucity.gov.ph", label: "Learn About Bohol" }
     }
   ]
 };
 
-// Raw Gallery Items Source
+
 const baseGalleryItems = [
   { id: 1,  src: "/images2/bohol1.jpg" },
   { id: 2,  src: "/images2/bohol2.jpg" },
@@ -345,7 +336,7 @@ export default function EducationalTourPage({ onBack }) {
           <h2 className="font-sans font-bold text-4xl lg:text-5xl tracking-tight text-white drop-shadow-lg">
             Tour <span className="text-[#e8ff47]">Highlights</span>
           </h2>
-          <p className="text-zinc-400 mt-3 max-w-lg mx-auto">Click and drag to orbit the 3D Sphere. Click on any frame to expand it.</p>
+          
         </div>
 
         <div

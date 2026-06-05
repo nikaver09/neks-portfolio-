@@ -60,7 +60,7 @@ const tourData = {
       ],
       journalEntry: "Our trip to Bohol was a stark, beautiful contrast to the concrete tech hubs of Cebu. Seeing the tiny, delicate Tarsiers up close and witnessing the vast expanse of the Chocolate Hills reminded me of the broader world our technology serves.",
       floatingImage: "/images2/mata1.png", 
-      viewerImage: "/images2/dynatass.jfif",   
+      viewerImage: "/images2/matas666.jpg",   
       link: { url: "https://tourism.bohol.gov.ph", label: "Discover Bohol" }
     },
     {

@@ -26,14 +26,14 @@ export default function Hero({ onNavigateToTour }) {
       <div
         ref={cursorRef}
         className="pointer-events-none fixed w-[400px] h-[400px] rounded-full opacity-10 transition-transform duration-700 ease-out"
-        style={{ background: "radial-gradient(circle, #e8ff47 0%, transparent 70%)", zIndex: 0 }}
+        style={{ background: "radial-gradient(circle, #D1D5D0 0%, transparent 70%)", zIndex: 0 }}
       />
       
       {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-5"
         style={{
-          backgroundImage: "linear-gradient(#e8ff47 1px, transparent 1px), linear-gradient(90deg, #e8ff47 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(#D1D5D0 1px, transparent 1px), linear-gradient(90deg, #D1D5D0 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -61,8 +61,6 @@ export default function Hero({ onNavigateToTour }) {
                 I craft digital experiences<br />that <span className="text-accent">actually work.</span>
               </h2>
             </div>
-
-    
 
             {/* CTA Button Group Container */}
             <div className="flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
@@ -132,7 +130,7 @@ export default function Hero({ onNavigateToTour }) {
         <div className="mt-20 flex items-center gap-4 animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
           <div className="flex flex-col items-center gap-1">
             <div className="w-px h-8 bg-gradient-to-b from-accent to-transparent" />
-            <div className="w-px h-8 animate-bounce" style={{ background: "linear-gradient(to bottom, transparent, #e8ff47, transparent)" }} />
+            <div className="w-px h-8 animate-bounce" style={{ background: "linear-gradient(to bottom, transparent, #D1D5D0, transparent)" }} />
           </div>
           <span className="font-mono text-xs text-ghost uppercase tracking-[0.3em]">Scroll to explore</span>
         </div>

@@ -55,6 +55,17 @@
   to { opacity: 1; }
 }
 
+/* Loader Animations */
+@keyframes loaderSlideUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loaderLetterUp {
+  0% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 /* Lenis Recommended CSS */
 html.lenis,
 html.lenis body {

@@ -13,7 +13,7 @@ export default {
         ink: "#0a0a0f",      /* Main background - keeping the dark base */
         surface: "#111118",  /* Section backgrounds */
         card: "#16161f",     /* Card backgrounds */
-        accent: "#E6BEA5",   /* Charcoal - Your new primary accent color */
+        accent: "#EDEFDF",   /* Charcoal - Your new primary accent color */
         accent2: "#e5e7eb",  /* Light Gray - Secondary highlight */
         muted: "#374151",    /* Dark Gray - Great for subtle borders or inactive states */
         ghost: "#6b7280",    /* Medium-Dark Gray - Perfect for secondary, less important text */

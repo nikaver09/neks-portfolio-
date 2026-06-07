@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowDownRight, Terminal, Link, Globe, GraduationCap } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const socials = [
   { icon: Terminal, href: "https://github.com/nikaver09", label: "GitHub" },
@@ -7,8 +8,16 @@ const socials = [
   { icon: Globe, href: "https://www.facebook.com/neysoo900/", label: "Twitter" },
 ];
 
+const images = [
+  "/images2/profs1.jpg",
+  "/images2/loop4.jfif", // Add your 2nd image path here
+  "/images2/loop3.jfif",
+  
+];
+
 export default function Hero({ onNavigateToTour }) {
   const cursorRef = useRef(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const move = (e) => {
@@ -18,6 +27,13 @@ export default function Hero({ onNavigateToTour }) {
     };
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 4000); // Changes image every 4 seconds
+    return () => clearInterval(timer);
   }, []);
 
   return (
@@ -105,19 +121,21 @@ export default function Hero({ onNavigateToTour }) {
           {/* Adjusted margins to align the top of the card with the "Full-Stack Developer" text */}
           <div className="flex justify-center lg:justify-end animate-fade-in mt-12 lg:mt-32" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <div className="relative">
-              <div className="relative w-64 h-64 lg:w-[350px] lg:h-[350px]">
-                <div className="relative w-full h-full rounded-2xl bg-card border border-muted/30 overflow-hidden glow group">
-                  <img 
-                    src="/images2/profs1.jpg" 
-                    alt="Developer Portrait" 
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                  />
+              <div className="relative w-72 h-72 lg:w-[400px] lg:h-[400px]">
+                <div className="relative w-full h-full rounded-2xl bg-card border border-muted/30 overflow-hidden glow group flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.img 
+                      key={currentImageIndex}
+                      src={images[currentImageIndex]} 
+                      alt="Developer Portrait" 
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.8, ease: "easeInOut" }}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                    />
+                  </AnimatePresence>
                   <div className="absolute inset-0 bg-gradient-to-br from-ink/80 via-transparent to-ink/60 pointer-events-none"></div>
-                </div>
-
-                <div className="absolute -bottom-4 -left-6 bg-accent text-ink px-5 py-3 rounded-2xl shadow-xl animate-float">
-                  <p className="font-display text-3xl leading-none">3+</p>
-                  <p className="font-body text-xs font-semibold uppercase tracking-wider">Years exp.</p>
                 </div>
 
                 <div className="absolute inset-0 rounded-3xl border-2 border-accent/10 scale-105 pointer-events-none" />

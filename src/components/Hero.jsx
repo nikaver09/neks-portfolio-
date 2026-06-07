@@ -43,18 +43,18 @@ export default function Hero({ onNavigateToTour }) {
       <div className="absolute top-48 right-24 w-44 h-44 border border-accent/20 rounded-full animate-spin-slow opacity-40" style={{ animationDirection: "reverse", animationDuration: "12s" }} />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-16 w-full z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           
           {/* Left Column: Text & CTAs */}
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 bg-card border border-muted/40 rounded-full px-4 py-2 animate-fade-in">
+          <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 bg-card border border-muted/40 rounded-full px-4 py-2 animate-fade-in w-fit">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span className="font-mono text-xs text-ghost uppercase tracking-widest">Available for work</span>
             </div>
 
             <div className="space-y-2 animate-fade-up" style={{ animationDelay: "0.1s", opacity: 0 }}>
               <p className="font-heading font-medium text-ghost tracking-[0.3em] uppercase text-sm">Full-Stack Developer</p>
-              <h1 className="font-display text-[clamp(4rem,12vw,9rem)] leading-none tracking-wider">
+              <h1 className="font-display text-6xl sm:text-8xl lg:text-9xl leading-none tracking-wider font-bold" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                 <span className="text-gradient">NICOS.  AVERGONZADO</span>
               </h1>
               <h2 className="font-heading font-semibold text-2xl lg:text-3xl text-snow/80 leading-snug">
@@ -63,7 +63,7 @@ export default function Hero({ onNavigateToTour }) {
             </div>
 
             {/* CTA Button Group Container */}
-            <div className="flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 animate-fade-up" style={{ animationDelay: "0.3s", opacity: 0 }}>
               <button
                 onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
                 className="group flex items-center gap-2 bg-accent text-ink font-heading font-bold px-8 py-4 rounded-full hover:bg-white transition-all duration-200 uppercase tracking-wider text-sm"
@@ -89,7 +89,7 @@ export default function Hero({ onNavigateToTour }) {
               </button>
             </div>
 
-            <div className="flex items-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
+            <div className="flex items-center justify-center lg:justify-start gap-4 animate-fade-up" style={{ animationDelay: "0.4s", opacity: 0 }}>
               <span className="font-mono text-xs text-ghost uppercase tracking-widest">Follow</span>
               <div className="w-8 h-px bg-muted" />
               {socials.map(({ icon: Icon, href, label }) => (
@@ -102,10 +102,11 @@ export default function Hero({ onNavigateToTour }) {
           </div>
 
           {/* Right Column: Image Card */}
-          <div className="flex justify-center lg:justify-end animate-fade-in" style={{ animationDelay: "0.5s", opacity: 0 }}>
+          {/* Adjusted margins to align the top of the card with the "Full-Stack Developer" text */}
+          <div className="flex justify-center lg:justify-end animate-fade-in mt-12 lg:mt-32" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <div className="relative">
-              <div className="relative w-72 h-72 lg:w-96 lg:h-96">
-                <div className="relative w-full h-full rounded-3xl bg-card border border-muted/30 overflow-hidden glow group">
+              <div className="relative w-64 h-64 lg:w-[350px] lg:h-[350px]">
+                <div className="relative w-full h-full rounded-2xl bg-card border border-muted/30 overflow-hidden glow group">
                   <img 
                     src="/images2/profs1.jpg" 
                     alt="Developer Portrait" 
@@ -127,7 +128,7 @@ export default function Hero({ onNavigateToTour }) {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="mt-20 flex items-center gap-4 animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
+        <div className="mt-20 flex items-center justify-center lg:justify-start gap-4 animate-fade-in" style={{ animationDelay: "0.8s", opacity: 0 }}>
           <div className="flex flex-col items-center gap-1">
             <div className="w-px h-8 bg-gradient-to-b from-accent to-transparent" />
             <div className="w-px h-8 animate-bounce" style={{ background: "linear-gradient(to bottom, transparent, #D1D5D0, transparent)" }} />

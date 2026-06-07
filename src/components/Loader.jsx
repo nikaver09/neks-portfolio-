@@ -6,18 +6,18 @@ export default function Loader({ onComplete }) {
 
   // Simulate loading progress
   useEffect(() => {
-    const duration = 2800; // total loading time in ms
-    const interval = 20;
+    const duration = 2500; // total loading time in ms
+    const interval = 20;   // refresh interval
     const step = 100 / (duration / interval);
     let current = 0;
 
     const timer = setInterval(() => {
-      current += step + Math.random() * step * 0.5;
+      current += step + Math.random() * step * 0.3;
       if (current >= 100) {
         current = 100;
         clearInterval(timer);
         // Start reveal phase after a brief pause
-        setTimeout(() => setPhase("reveal"), 400);
+        setTimeout(() => setPhase("reveal"), 600);
       }
       setProgress(Math.min(current, 100));
     }, interval);
@@ -60,7 +60,7 @@ export default function Loader({ onComplete }) {
       <div
         className="absolute w-[600px] h-[600px] rounded-full opacity-[0.07] blur-[120px] animate-pulse"
         style={{
-          background: "radial-gradient(circle, #E6BEA5, transparent 70%)",
+          background: "radial-gradient(circle, #212121, transparent 70%)",
           animationDuration: "3s",
         }}
       />

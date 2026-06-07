@@ -7,21 +7,21 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background-color: #0a0a0f; /* Restored the dark base for proper text contrast! */
-    color: #f0f0f8;
+    background-color: #212121; /* Restored the dark base for proper text contrast! */
+    color: #FFFEFD;
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
-  ::selection { background: #E6BEA5; color: #0a0a0f; } /* Updated to soft beige */
+  ::selection { background: #707174; color: #212121; } /* Updated to soft beige */
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #111118; }
-  ::-webkit-scrollbar-thumb { background: #E6BEA5; border-radius: 2px; } /* Updated to soft beige */
+  ::-webkit-scrollbar-track { background: #212121; }
+  ::-webkit-scrollbar-thumb { background: #FFFEFD; border-radius: 2px; } /* Updated to soft beige */
 }
 
 @layer utilities {
   .text-gradient {
     /* Updated gradient: Soft Beige to White */
-    background: linear-gradient(135deg, #E6BEA5 0%, #ffffff 60%); 
+    background: linear-gradient(135deg, #707174 0%, #FFFEFD 60%); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -35,7 +35,7 @@
     z-index: 9999;
     opacity: 0.3;
   }
-  /* Updated glows and shadows using the RGB values for #E6BEA5 (230, 190, 165) */
+  /* Updated glows and shadows using the RGB values for #FFFBEA (230, 190, 165) */
   .glow { box-shadow: 0 0 40px rgba(230, 190, 165, 0.15); } 
   .card-hover {
     transition: all 0.3s ease;
@@ -99,7 +99,7 @@ html.lenis, html.lenis body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0a0a0f; /* Your 'ink' color */
+  background-color: #212121; /* Your 'ink' color */
   z-index: 40;
   transform: translateY(-100%);
   transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1); /* Smooth slide */
@@ -123,5 +123,5 @@ html.lenis, html.lenis body {
 }
 
 .menu-toggle-btn:hover {
-  color: #E6BEA5; /* Your 'accent' color */
+  color: #FFFEFD; /* Your 'accent' color */
 }

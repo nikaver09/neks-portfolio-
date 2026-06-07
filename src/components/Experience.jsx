@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const experiences = [
   {
     role: "Senior Frontend Developer",
@@ -37,24 +39,57 @@ export default function Experience() {
   return (
     <section id="experience" className="py-28 lg:py-36 bg-surface/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center gap-4 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-4 mb-16"
+        >
           <span className="font-mono text-xs text-accent uppercase tracking-[0.3em]">04 — Experience</span>
           <div className="flex-1 h-px bg-muted/30" />
-        </div>
+        </motion.div>
 
-        <h2 className="font-heading font-bold text-4xl lg:text-5xl leading-tight mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="font-heading font-bold text-4xl lg:text-5xl leading-tight mb-12"
+        >
           Where I've <span className="text-accent">worked</span>
-        </h2>
+        </motion.h2>
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-muted/40 to-transparent hidden md:block" style={{ left: "1px" }} />
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "circOut" }}
+            style={{ originY: 0, left: "1px" }}
+            className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-muted/40 to-transparent hidden md:block" 
+          />
 
           <div className="space-y-2">
             {experiences.map((exp, i) => (
-              <div key={i} className="md:pl-12 relative group">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="md:pl-12 relative group"
+              >
                 {/* Timeline dot */}
-                <div className="absolute left-0 top-8 w-2.5 h-2.5 rounded-full bg-accent hidden md:block -translate-x-[4px] group-hover:scale-150 transition-transform" />
+                <div className="absolute left-0 top-8 w-2.5 h-2.5 rounded-full bg-accent hidden md:block -translate-x-[4px] group-hover:scale-150 transition-transform">
+                  {/* Looping pulse animation */}
+                  <motion.div 
+                    animate={{ scale: [1, 2.5], opacity: [0.5, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                    className="absolute inset-0 rounded-full bg-accent/60"
+                  />
+                </div>
 
                 <div className="card-hover bg-card border border-muted/30 rounded-2xl p-8 hover:border-accent/30">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
@@ -76,7 +111,7 @@ export default function Experience() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

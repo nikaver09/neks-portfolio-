@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowDownRight, Terminal, Link, Globe, GraduationCap } from "lucide-react";
+import { ArrowDownRight, Terminal, Link, Globe, GraduationCap, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const socials = [
@@ -10,12 +10,12 @@ const socials = [
 
 const images = [
   "/images2/profs1.jpg",
-  "/images2/loop4.jfif", // Add your 2nd image path here
+  "/images2/loop4.jfif", 
   "/images2/loop3.jfif",
   
 ];
 
-export default function Hero({ onNavigateToTour }) {
+export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
   const cursorRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -98,10 +98,18 @@ export default function Hero({ onNavigateToTour }) {
               </button>
 
               <button
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
                 className="flex items-center gap-2 border border-muted/50 text-snow font-heading font-medium px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-200 uppercase tracking-wider text-sm"
               >
-                Get in touch
+                About Me
+              </button>
+
+              <button
+                onClick={onNavigateToCertificates}
+                className="flex items-center gap-2 border border-muted/50 text-snow font-heading font-medium px-8 py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-200 uppercase tracking-wider text-sm"
+              >
+                <Award size={18} />
+                Certificates
               </button>
             </div>
 

@@ -5,14 +5,35 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("sent");
-      setForm({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setStatus(""), 3000);
-    }, 1200);
+
+    try {
+      // Example using Web3Forms (Free service for static sites)
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // Get yours at web3forms.com
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+
+      if (response.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setStatus(""), 5000);
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+      setTimeout(() => setStatus(""), 4000);
+    }
   };
 
   return (

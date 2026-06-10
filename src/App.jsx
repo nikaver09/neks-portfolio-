@@ -10,6 +10,7 @@ import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import EducationalTourPage from "./components/EducationalTourPage";
+import CertificatesPage from "./components/CertificatesPage";
 import Loader from "./components/Loader";
 
 export default function App() {
@@ -34,7 +35,10 @@ export default function App() {
         {currentPage === "portfolio" ? (
           <>
             <Navbar />
-            <Hero onNavigateToTour={() => handlePageChange("tour")} />
+            <Hero 
+              onNavigateToTour={() => handlePageChange("tour")} 
+              onNavigateToCertificates={() => handlePageChange("certificates")}
+            />
             <Ticker />
             <About />
             <Skills />
@@ -43,8 +47,10 @@ export default function App() {
             <Contact />
             <Footer />
           </>
-        ) : (
+        ) : currentPage === "tour" ? (
           <EducationalTourPage onBack={() => handlePageChange("portfolio")} />
+        ) : (
+          <CertificatesPage onBack={() => handlePageChange("portfolio")} />
         )}
       </div>
     </SmoothScroll>

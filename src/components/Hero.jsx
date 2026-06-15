@@ -65,11 +65,9 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
           <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-card border border-muted/40 rounded-full px-4 py-2 animate-fade-in w-fit">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="font-mono text-xs text-ghost uppercase tracking-widest">Available for work</span>
             </div>
 
             <div className="space-y-2 animate-fade-up" style={{ animationDelay: "0.1s", opacity: 0 }}>
-              <p className="font-heading font-medium text-ghost tracking-[0.3em] uppercase text-sm">Full-Stack Developer</p>
               <h1 className="font-display text-6xl sm:text-8xl lg:text-9xl leading-none tracking-wider font-bold" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                 <span className="text-gradient">NICOS.  AVERGONZADO</span>
               </h1>

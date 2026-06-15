@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const links = ["About", "Skills", "Projects", "Experience", "Contact"];
 
@@ -14,13 +14,52 @@ export default function Navbar() {
 
   return (
     <>
-      {/* --- Floating Menu Toggle Button (Standalone) --- */}
-      <button 
-        className="fixed top-8 left-8 z-50 text-snow hover:text-accent transition-colors" 
+      {/* --- 3D Animated Toggle Button --- */}
+      <motion.button 
+        initial={false}
+        animate={open ? "open" : "closed"}
+        whileHover="hover"
+        whileTap={{ scale: 0.9, rotateX: 20 }}
         onClick={() => setOpen(!open)}
+        className="fixed top-8 left-8 z-[100] w-16 h-16 flex flex-col items-center justify-center bg-transparent rounded-2xl transition-all group overflow-hidden"
+        style={{ perspective: "1000px" }}
       >
-        {open ? <X size={40} /> : <Menu size={40} />}
-      </button>
+        {/* Subtle 3D Depth Layer */}
+        <motion.div
+          variants={{
+            hover: { rotateY: 25, rotateX: -15, x: 5, y: -2 },
+            closed: { rotateY: 0, rotateX: 0, x: 0, y: 0 }
+          }}
+          className="relative flex flex-col items-center justify-center gap-1.5 pointer-events-none"
+        >
+          {/* Top Line */}
+          <motion.span 
+            variants={{
+              closed: { rotate: 0, y: 0 },
+              open: { rotate: 45, y: 8 },
+            }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="w-8 h-0.5 bg-snow group-hover:bg-accent block rounded-full"
+          />
+          {/* Middle Line */}
+          <motion.span 
+            variants={{
+              closed: { opacity: 1, scaleX: 1 },
+              open: { opacity: 0, scaleX: 0 },
+            }}
+            className="w-8 h-0.5 bg-snow group-hover:bg-accent block rounded-full"
+          />
+          {/* Bottom Line */}
+          <motion.span 
+            variants={{
+              closed: { rotate: 0, y: 0 },
+              open: { rotate: -45, y: -8 },
+            }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="w-8 h-0.5 bg-snow group-hover:bg-accent block rounded-full"
+          />
+        </motion.div>
+      </motion.button>
 
       {/* --- Full-Screen Animated Overlay --- */}
       <div className={`nav-overlay ${open ? "active" : ""}`}>

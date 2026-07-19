@@ -39,38 +39,180 @@ export default function Loader({ onComplete }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black transition-all duration-[1000ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
-        phase === "reveal" || phase === "done"
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black transition-all duration-[1000ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${phase === "reveal" || phase === "done"
           ? "opacity-0 pointer-events-none scale-[1.1]"
           : "opacity-100"
-      }`}
+        }`}
     >
-      {/* Main content */}
-      <motion.div 
-        whileHover={{ scale: 1.02 }}
-        className="relative z-10 flex flex-col items-center gap-10 cursor-default group"
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-heading font-bold text-6xl lg:text-5xl text-accent tracking-tighter uppercase transition-all duration-500 group-hover:tracking-widest"
-        >
-          NICDEV
-        </motion.h1>
+      <style>{`
+        .perspective-container {
+          perspective: 1000px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 250px;
+          width: 100%;
+        }
 
-        {/* Progress bar */}
-        <div className="w-80 md:w-[450px] space-y-4">
-          <div className="relative h-1 bg-white/5 border border-accent/20 overflow-hidden group-hover:border-accent/40 transition-colors">
-            <div
-              className="absolute inset-y-0 left-0 transition-all duration-100 ease-out bg-accent shadow-[0_0_15px_rgba(161,161,161,0.5)] group-hover:shadow-[0_0_25px_rgba(161,161,161,0.8)]"
-              style={{
-                width: `${progress}%`,
-              }}
-            />
+        .base {
+          --box-width: 50px;
+          --box-height: 50px;
+          --box-depth: 100px;
+          width: 110px;
+          height: 110px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          transform-style: preserve-3d;
+          transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg);
+          animation: rotate 6s linear infinite;
+        }
+
+        .cube {
+          position: relative;
+          width: var(--box-width);
+          height: var(--box-height);
+          transform-style: preserve-3d;
+          animation: grow 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite alternate-reverse;
+        }
+
+        .cube:nth-of-type(1) {
+          animation-delay: 0s;
+        }
+        .cube:nth-of-type(2) {
+          animation-delay: 0.2s;
+        }
+        .cube:nth-of-type(3) {
+          animation-delay: 0.4s;
+        }
+        .cube:nth-of-type(4) {
+          animation-delay: 0.6s;
+        }
+
+        .face {
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform-style: preserve-3d;
+        }
+
+        .side-front,
+        .side-back {
+          width: var(--box-width);
+          height: var(--box-height);
+          background-color: #FFFEFD; /* snow */
+        }
+
+        .side-front {
+          transform: translateZ(50px);
+        }
+
+        .side-back {
+          transform: translateZ(-50px);
+        }
+
+        .side-left,
+        .side-right {
+          width: var(--box-depth);
+          height: var(--box-height);
+          background-color: #EDEFDF; /* accent */
+          left: 50%;
+          top: 50%;
+        }
+
+        .side-left {
+          transform: translate(-50%, -50%) rotateY(-90deg) translateZ(25px);
+        }
+
+        .side-right {
+          transform: translate(-50%, -50%) rotateY(90deg) translateZ(25px);
+        }
+
+        .side-top,
+        .side-bottom {
+          width: var(--box-width);
+          height: var(--box-depth);
+          background-color: #C1C3B4; /* shaded accent shadow */
+          left: 50%;
+          top: 50%;
+        }
+
+        .side-top {
+          transform: translate(-50%, -50%) rotateX(-90deg) translateZ(25px);
+        }
+
+        .side-bottom {
+          transform: translate(-50%, -50%) rotateX(90deg) translateZ(25px);
+        }
+
+        @keyframes rotate {
+          from {
+            transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg);
+          }
+          to {
+            transform: rotateX(60deg) rotateZ(405deg) rotateY(0deg);
+          }
+        }
+
+        @keyframes grow {
+          0% {
+            transform: scaleZ(0.2);
+          }
+          100% {
+            transform: scaleZ(1.8);
+          }
+        }
+      `}</style>
+
+      {/* Main content */}
+      <motion.div
+        className="relative z-10 flex flex-col items-center gap-8 cursor-default"
+      >
+        {/* 3D Columns Loader Grid */}
+        <div className="perspective-container">
+          <div className="base">
+            {/* Cube 1 */}
+            <div className="cube">
+              <div className="face side-front" />
+              <div className="face side-back" />
+              <div className="face side-left" />
+              <div className="face side-right" />
+              <div className="face side-top" />
+              <div className="face side-bottom" />
+            </div>
+            {/* Cube 2 */}
+            <div className="cube">
+              <div className="face side-front" />
+              <div className="face side-back" />
+              <div className="face side-left" />
+              <div className="face side-right" />
+              <div className="face side-top" />
+              <div className="face side-bottom" />
+            </div>
+            {/* Cube 3 */}
+            <div className="cube">
+              <div className="face side-front" />
+              <div className="face side-back" />
+              <div className="face side-left" />
+              <div className="face side-right" />
+              <div className="face side-top" />
+              <div className="face side-bottom" />
+            </div>
+            {/* Cube 4 */}
+            <div className="cube">
+              <div className="face side-front" />
+              <div className="face side-back" />
+              <div className="face side-left" />
+              <div className="face side-right" />
+              <div className="face side-top" />
+              <div className="face side-bottom" />
+            </div>
           </div>
         </div>
-      </motion.div>    
+
+
+
+      </motion.div>
     </div>
   );
 }

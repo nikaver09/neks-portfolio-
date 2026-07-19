@@ -10,9 +10,9 @@ const socials = [
 
 const images = [
   "/images2/profs1.jpg",
-  "/images2/loop4.jfif", 
+  "/images2/loop4.jfif",
   "/images2/loop3.jfif",
-  
+
 ];
 
 export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
@@ -44,7 +44,7 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
         className="pointer-events-none fixed w-[400px] h-[400px] rounded-full opacity-10 transition-transform duration-700 ease-out"
         style={{ background: "radial-gradient(circle, #D1D5D0 0%, transparent 70%)", zIndex: 0 }}
       />
-      
+
       {/* Background Grid */}
       <div
         className="absolute inset-0 opacity-5"
@@ -53,14 +53,14 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
           backgroundSize: "60px 60px",
         }}
       />
-      
+
       {/* Background Abstract Rings */}
       <div className="absolute top-32 right-12 w-72 h-72 border border-muted/20 rounded-full animate-spin-slow opacity-30" />
       <div className="absolute top-48 right-24 w-44 h-44 border border-accent/20 rounded-full animate-spin-slow opacity-40" style={{ animationDirection: "reverse", animationDuration: "12s" }} />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-16 w-full z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
-          
+
           {/* Left Column: Text & CTAs */}
           <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
             <div className="inline-flex items-center gap-2 bg-card border border-muted/40 rounded-full px-4 py-2 animate-fade-in w-fit">
@@ -124,16 +124,16 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
           </div>
 
           {/* Right Column: Image Card */}
-          {/* Adjusted margins to align the top of the card with the "Full-Stack Developer" text */}
-          <div className="flex justify-center lg:justify-end animate-fade-in mt-12 lg:mt-32" style={{ animationDelay: "0.5s", opacity: 0 }}>
+          {/* Adjusted margins to align the top of the card level with the name header "NICOS. AVERGONZADO" */}
+          <div className="flex justify-center lg:justify-end animate-fade-in mt-12 lg:mt-[72px]" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <div className="relative">
               <div className="relative w-72 h-72 lg:w-[400px] lg:h-[400px]">
                 <div className="relative w-full h-full rounded-2xl bg-card border border-muted/30 overflow-hidden glow group flex items-center justify-center">
                   <AnimatePresence mode="wait">
-                    <motion.img 
+                    <motion.img
                       key={currentImageIndex}
-                      src={images[currentImageIndex]} 
-                      alt="Developer Portrait" 
+                      src={images[currentImageIndex]}
+                      alt="Developer Portrait"
                       initial={{ opacity: 0, scale: 1.1 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}

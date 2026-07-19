@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import EducationalTourPage from "./components/EducationalTourPage";
 import CertificatesPage from "./components/CertificatesPage";
 import Loader from "./components/Loader";
+import CustomCursor from "./components/CustomCursor";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("portfolio");
@@ -28,6 +29,7 @@ export default function App() {
 
   return (
     <SmoothScroll>
+      <CustomCursor />
       {/* Loader overlay */}
       {isLoading && <Loader onComplete={handleLoaderComplete} />}
 

@@ -53,7 +53,7 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-3 gap-6 pt-4">
-              {[["3+", "Years Exp."], ["20+", "Projects"],].map(([num, label]) => (
+              {[["3", "Years Exp."], ["14", "Projects"],].map(([num, label]) => (
                 <div key={label} className="space-y-1">
                   <p className="font-display text-4xl text-accent">{num}</p>
                   <p className="font-mono text-xs text-ghost uppercase tracking-widest">{label}</p>

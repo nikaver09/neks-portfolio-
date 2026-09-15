@@ -1,36 +1,38 @@
 import { useState } from "react";
 import { Mail, MapPin, Send, Terminal, Link, Globe } from "lucide-react";
+import emailjs from "@emailjs/browser";
+const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState("");
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
 
     try {
-      // Example using Web3Forms (Free service for static sites)
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE", // Get yours at web3forms.com
-          name: form.name,
-          email: form.email,
-          subject: form.subject,
-          message: form.message,
-        }),
-      });
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name:    form.name,
+          from_email:   form.email,
+          subject:      form.subject || `Message from ${form.name}`,
+          message:      form.message,
+          to_email:     "nkavs777@gmail.com",
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
-      if (response.ok) {
-        setStatus("sent");
-        setForm({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setStatus(""), 5000);
-      } else {
-        setStatus("error");
-      }
+      setStatus("sent");
+      setForm({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus(""), 5000);
     } catch (error) {
+      console.error("EmailJS error:", error);
       setStatus("error");
       setTimeout(() => setStatus(""), 4000);
     }
@@ -45,7 +47,6 @@ export default function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left */}
           <div className="space-y-8">
             <div>
               <h2 className="font-heading font-bold text-4xl lg:text-5xl leading-tight mb-4">
@@ -84,7 +85,6 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Decorative card */}
             <div className="bg-card border border-muted/30 rounded-2xl p-6 space-y-2 mt-4">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
@@ -95,20 +95,31 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right — Form */}
-          <div className="bg-card border border-muted/30 rounded-3xl p-8 lg:p-10">
-            {status === "sent" ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-16 gap-4">
-                <div className="w-16 h-16 bg-accent/10 border border-accent/30 rounded-full flex items-center justify-center">
-                  <Send size={24} className="text-accent" />
+          {!isFormOpen ? (
+            <div className="flex items-center justify-center h-full min-h-[400px]">
+              <button onClick={() => setIsFormOpen(true)}
+                className="group flex items-center gap-3 bg-accent text-ink font-heading font-bold px-8 py-5 rounded-full hover:bg-white transition-all duration-300 uppercase tracking-wider text-base hover:scale-105 shadow-lg shadow-accent/20">
+                Send a Message
+                <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
+            </div>
+          ) : (
+            <div className="bg-card border border-muted/30 rounded-3xl p-8 lg:p-10 animate-fade-in relative">
+              <button onClick={() => setIsFormOpen(false)} className="absolute top-6 right-8 text-ghost hover:text-snow transition-colors text-sm uppercase tracking-widest font-mono">
+                Close
+              </button>
+              {status === "sent" ? (
+                <div className="h-full flex flex-col items-center justify-center text-center py-16 gap-4">
+                  <div className="w-16 h-16 bg-accent/10 border border-accent/30 rounded-full flex items-center justify-center">
+                    <Send size={24} className="text-accent" />
+                  </div>
+                  <h3 className="font-heading font-bold text-2xl text-snow">Message sent!</h3>
+                  <p className="font-body text-ghost">I'll get back to you within 24 hours.</p>
                 </div>
-                <h3 className="font-heading font-bold text-2xl text-snow">Message sent!</h3>
-                <p className="font-body text-ghost">I'll get back to you within 24 hours.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="font-heading font-bold text-xl text-snow mb-2">Send a message</h3>
-                <div className="grid sm:grid-cols-2 gap-4">
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6 mt-2">
+                  <h3 className="font-heading font-bold text-xl text-snow mb-4">Send a message</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="font-mono text-xs text-ghost uppercase tracking-widest">Name</label>
                     <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
@@ -144,7 +155,8 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

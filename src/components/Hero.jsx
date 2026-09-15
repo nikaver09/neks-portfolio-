@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ArrowDownRight, Terminal, Link, Globe, GraduationCap, Award } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const socials = [
   { icon: Terminal, href: "https://github.com/nikaver09", label: "GitHub" },
@@ -8,16 +8,11 @@ const socials = [
   { icon: Globe, href: "https://www.facebook.com/neysoo900/", label: "Twitter" },
 ];
 
-const images = [
-  "/images2/profs1.jpg",
-  "/images2/loop4.jfif",
-  "/images2/loop3.jfif",
+const image = "/images2/neku.jfif";
 
-];
 
 export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
   const cursorRef = useRef(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const move = (e) => {
@@ -29,12 +24,6 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 4000); // Changes image every 4 seconds
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" id="hero">
@@ -59,17 +48,18 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
       <div className="absolute top-48 right-24 w-44 h-44 border border-accent/20 rounded-full animate-spin-slow opacity-40" style={{ animationDirection: "reverse", animationDuration: "12s" }} />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-16 w-full z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* Left Column: Text & CTAs */}
-          <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+          <div className="space-y-8 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 bg-card border border-muted/40 rounded-full px-4 py-2 animate-fade-in w-fit">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             </div>
 
             <div className="space-y-2 animate-fade-up" style={{ animationDelay: "0.1s", opacity: 0 }}>
-              <h1 className="font-display text-6xl sm:text-8xl lg:text-9xl leading-none tracking-wider font-bold" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                <span className="text-gradient">NICOS.  AVERGONZADO</span>
+              <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl leading-[1.05] tracking-tight" style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 800 }}>
+                <span className="text-gradient block">NICOS</span>
+                <span className="text-gradient block ml-4 sm:ml-8 lg:ml-12">AVERGONZADO</span>
               </h1>
               <h2 className="font-heading font-semibold text-2xl lg:text-3xl text-snow/80 leading-snug">
                 I craft digital experiences<br />that <span className="text-accent">actually work.</span>
@@ -125,26 +115,25 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
 
           {/* Right Column: Image Card */}
           {/* Adjusted margins to align the top of the card level with the name header "NICOS. AVERGONZADO" */}
-          <div className="flex justify-center lg:justify-end animate-fade-in mt-12 lg:mt-[72px]" style={{ animationDelay: "0.5s", opacity: 0 }}>
+          <div className="flex justify-center lg:justify-end animate-fade-in order-1 lg:order-2" style={{ animationDelay: "0.5s", opacity: 0 }}>
             <div className="relative">
-              <div className="relative w-72 h-72 lg:w-[400px] lg:h-[400px]">
-                <div className="relative w-full h-full rounded-2xl bg-card border border-muted/30 overflow-hidden glow group flex items-center justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={currentImageIndex}
-                      src={images[currentImageIndex]}
-                      alt="Developer Portrait"
-                      initial={{ opacity: 0, scale: 1.1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.8, ease: "easeInOut" }}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                    />
-                  </AnimatePresence>
-                  <div className="absolute inset-0 bg-gradient-to-br from-ink/80 via-transparent to-ink/60 pointer-events-none"></div>
+              {/* Spinning gradient ring */}
+              <div className="absolute -inset-3 rounded-2xl animate-spin-slow" style={{ background: "conic-gradient(from 0deg, transparent 60%, #D1D5D0 80%, transparent 100%)", opacity: 0.4 }} />
+              {/* Static accent ring */}
+              <div className="absolute -inset-1.5 rounded-2xl border border-accent/30" />
+              <div className="relative w-80 h-80 lg:w-[460px] lg:h-[460px]">
+                <div className="relative w-full h-full rounded-2xl bg-card border-4 border-muted/60 overflow-hidden glow group flex items-center justify-center shadow-2xl">
+                  <motion.img
+                    src={image}
+                    alt="Developer Portrait"
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
                 </div>
 
-                <div className="absolute inset-0 rounded-3xl border-2 border-accent/10 scale-105 pointer-events-none" />
+                <div className="absolute inset-0 rounded-2xl border-2 border-accent/10 scale-105 pointer-events-none" />
               </div>
             </div>
           </div>

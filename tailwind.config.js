@@ -23,8 +23,8 @@ export default {
         "fade-up": "fadeUp 0.6s ease forwards",
         "fade-in": "fadeIn 0.5s ease forwards",
         float: "float 6s ease-in-out infinite",
-        "spin-slow": "spin 20s linear infinite",
-        marquee: "marquee 25s linear infinite",
+        "spin-slow": "spin 15s linear infinite",
+        marquee: "marquee 5s linear infinite",
       },
       keyframes: {
         fadeUp: {

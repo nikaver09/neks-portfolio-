@@ -7,7 +7,7 @@ export default function Loader({ onComplete }) {
 
   // Simulate loading progress
   useEffect(() => {
-    const duration = 2500; // total loading time in ms
+    const duration = 1500; // total loading time in ms
     const interval = 20;   // refresh interval
     const step = 100 / (duration / interval);
     let current = 0;
@@ -40,8 +40,8 @@ export default function Loader({ onComplete }) {
   return (
     <div
       className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black transition-all duration-[1000ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${phase === "reveal" || phase === "done"
-          ? "opacity-0 pointer-events-none scale-[1.1]"
-          : "opacity-100"
+        ? "opacity-0 pointer-events-none scale-[1.1]"
+        : "opacity-100"
         }`}
     >
       <style>{`

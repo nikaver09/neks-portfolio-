@@ -12,7 +12,6 @@ const experiences = [
   {
     role: "Full-Stack Developer",
     company: "StartupXYZ",
-    period: "2022 — 2023",
     type: "Full-time",
     desc: "Built and shipped 3 core product features from scratch. Designed REST APIs, integrated third-party services, and set up CI/CD pipelines on GitHub Actions.",
     highlights: ["Node.js", "PostgreSQL", "Docker", "Next.js"],
@@ -20,7 +19,6 @@ const experiences = [
   {
     role: "Frontend Developer",
     company: "Digital Agency",
-    period: "2021 — 2022",
     type: "Contract",
     desc: "Delivered 10+ client websites with performance scores above 95 on Lighthouse. Worked directly with designers to translate Figma designs into code.",
     highlights: ["React", "Tailwind CSS", "Figma", "Webflow"],
@@ -28,10 +26,24 @@ const experiences = [
   {
     role: "Junior Developer",
     company: "Freelance",
-    period: "2020 — 2021",
     type: "Freelance",
     desc: "Started my journey building websites for local businesses, learning the full web development lifecycle from client briefing to deployment.",
     highlights: ["HTML/CSS", "JavaScript", "WordPress", "PHP"],
+  },
+  {
+    role: "App Developer",
+    company: "Freelance / Personal Projects",
+    period: "2023 — Present",
+    type: "Freelance",
+    desc: "Designed and developed cross-platform mobile applications using React Native. Focused on smooth UX, performance optimization, and publishing apps to both the App Store and Google Play.",
+    highlights: ["React Native", "Expo", "Firebase", "TypeScript"],
+  },
+  {
+    role: "Software Developer",
+    company: "Self-Initiated",
+    type: "Project-based",
+    desc: "Built full-featured desktop and web software solutions from the ground up. Focused on clean architecture, scalable codebases, and delivering reliable software products.",
+    highlights: ["Python", "Electron", "MySQL", "REST API"],
   },
 ];
 
@@ -98,7 +110,6 @@ export default function Experience() {
                       <p className="font-heading text-accent font-medium">{exp.company}</p>
                     </div>
                     <div className="flex flex-col items-start sm:items-end gap-1.5 shrink-0">
-                      <span className="font-mono text-sm text-ghost">{exp.period}</span>
                       <span className="font-mono text-xs text-ink bg-accent px-2.5 py-0.5 rounded-full">{exp.type}</span>
                     </div>
                   </div>

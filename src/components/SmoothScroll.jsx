@@ -3,7 +3,7 @@ import { ReactLenis } from 'lenis/react';
 export default function SmoothScroll({ children }) {
   // Professional high-end smooth scroll settings
   const lenisOptions = {
-    duration: 1.0,     // Speed of the scroll animation (in seconds)
+    duration: 0.6,     // Speed of the scroll animation (in seconds)
     lerp: 0.08,        // Smoothness/inertia (lower = smoother, higher = more instant)
     orientation: 'vertical',
     gestureOrientation: 'vertical',

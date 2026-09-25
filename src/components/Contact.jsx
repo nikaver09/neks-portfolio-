@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Mail, MapPin, Send, Terminal, Link, Globe } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { supabase } from "../lib/supabase";
+
 const EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 const EMAILJS_PUBLIC_KEY  = "YOUR_PUBLIC_KEY";
@@ -15,24 +17,47 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name:    form.name,
-          from_email:   form.email,
-          subject:      form.subject || `Message from ${form.name}`,
-          message:      form.message,
-          to_email:     "nkavs777@gmail.com",
-        },
-        EMAILJS_PUBLIC_KEY
-      );
+      const { error: dbError } = await supabase
+        .from("messages")
+        .insert([
+          {
+            name:    form.name,
+            email:   form.email,
+            subject: form.subject || `Message from ${form.name}`,
+            message: form.message,
+          },
+        ]);
+
+      if (dbError) {
+        console.error("Supabase insert error:", dbError.message);
+        setStatus("error");
+        setTimeout(() => setStatus(""), 4000);
+        return;
+      }
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            from_name:  form.name,
+            from_email: form.email,
+            subject:    form.subject || `Message from ${form.name}`,
+            message:    form.message,
+            to_email:   "nkavs777@gmail.com",
+          },
+          EMAILJS_PUBLIC_KEY
+        );
+      } catch (emailError) {
+        // EmailJS not configured yet — message still saved to Supabase
+        console.warn("EmailJS not configured:", emailError.message);
+      }
 
       setStatus("sent");
       setForm({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setStatus(""), 5000);
     } catch (error) {
-      console.error("EmailJS error:", error);
+      console.error("Submission error:", error);
       setStatus("error");
       setTimeout(() => setStatus(""), 4000);
     }

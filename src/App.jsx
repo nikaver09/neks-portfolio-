@@ -9,7 +9,6 @@ import Projects from "./components/Projects";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import EducationalTourPage from "./components/EducationalTourPage";
 import CertificatesPage from "./components/CertificatesPage";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
@@ -38,7 +37,6 @@ export default function App() {
           <>
             <Navbar />
             <Hero 
-              onNavigateToTour={() => handlePageChange("tour")} 
               onNavigateToCertificates={() => handlePageChange("certificates")}
             />
             <Ticker />
@@ -49,8 +47,6 @@ export default function App() {
             <Contact />
             <Footer />
           </>
-        ) : currentPage === "tour" ? (
-          <EducationalTourPage onBack={() => handlePageChange("portfolio")} />
         ) : (
           <CertificatesPage onBack={() => handlePageChange("portfolio")} />
         )}

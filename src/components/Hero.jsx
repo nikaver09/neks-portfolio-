@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { ArrowDownRight, Terminal, Link, Globe, GraduationCap, Award } from "lucide-react";
+import { ArrowDownRight, Terminal, Link, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
 
 const socials = [
@@ -10,7 +10,7 @@ const socials = [
 
 const image = "/images2/neku.jfif";
 
-export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
+export default function Hero({ onNavigateToCertificates }) {
   const cursorRef = useRef(null);
 
   useEffect(() => {
@@ -87,15 +87,6 @@ export default function Hero({ onNavigateToTour, onNavigateToCertificates }) {
               >
                 View Work
                 <ArrowDownRight size={16} className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
-              </button>
-
-              <button
-                onClick={onNavigateToTour}
-                className="flex items-center gap-2 border border-muted/50 text-snow font-heading font-medium px-5 py-3 sm:px-8 sm:py-4 rounded-full hover:border-accent hover:text-accent transition-all duration-200 uppercase tracking-wider text-xs sm:text-sm"
-              >
-                <GraduationCap size={16} />
-                <span className="hidden xs:inline">Educational Tour</span>
-                <span className="xs:hidden">Edu Tour</span>
               </button>
 
               <button

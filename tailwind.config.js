@@ -24,7 +24,7 @@ export default {
         accent: "#EDEFDF",   /* Charcoal - Your new primary accent color */
         accent2: "#e5e7eb",  /* Light Gray - Secondary highlight */
         muted: "#374151",    /* Dark Gray - Great for subtle borders or inactive states */
-        ghost: "#6b7280",    /* Medium-Dark Gray - Perfect for secondary, less important text */
+        ghost: "#ccced3ff",    /* Medium-Dark Gray - Perfect for secondary, less important text */
         snow: "#FFFEFD",     /* Pure White - For your brightest, most important text/headings */
       },
       animation: {

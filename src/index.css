@@ -4,28 +4,53 @@
 @tailwind utilities;
 
 @layer base {
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #212121; /* Restored the dark base for proper text contrast! */
+    background-color: #3b3a3a;
+    /* Restored the dark base for proper text contrast! */
     color: #FFFEFD;
     font-family: 'DM Sans', sans-serif;
     overflow-x: hidden;
   }
-  ::selection { background: #707174; color: #212121; } /* Updated to soft beige */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #212121; }
-  ::-webkit-scrollbar-thumb { background: #FFFEFD; border-radius: 2px; } /* Updated to soft beige */
+
+  ::selection {
+    background: #707174;
+    color: #212121;
+  }
+
+  /* Updated to soft beige */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #212121;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #FFFEFD;
+    border-radius: 2px;
+  }
+
+  /* Updated to soft beige */
 }
 
 @layer utilities {
   .text-gradient {
     /* Updated gradient: Soft Beige to White */
-    background: linear-gradient(135deg, #707174 0%, #FFFEFD 60%); 
+    background: linear-gradient(135deg, #707174 0%, #FFFEFD 60%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
   .noise::after {
     content: '';
     position: fixed;
@@ -35,35 +60,64 @@
     z-index: 9999;
     opacity: 0.3;
   }
+
   /* Updated glows and shadows using the RGB values for #FFFBEA (230, 190, 165) */
-  .glow { box-shadow: 0 0 40px rgba(230, 190, 165, 0.15); } 
+  .glow {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.767);
+  }
+
   .card-hover {
     transition: all 0.3s ease;
   }
+
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 60px rgba(230, 190, 165, 0.1);
   }
-  
+
   /* Added specific animations required by the modal component */
-  .animate-in { animation-fill-mode: both; }
-  .fade-in { animation-name: fadeIn; }
+  .animate-in {
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation-name: fadeIn;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Loader Animations */
 @keyframes loaderSlideUp {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes loaderLetterUp {
-  0% { opacity: 0; transform: translateY(100%); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Lenis Recommended CSS */
@@ -72,7 +126,8 @@ html.lenis body {
   height: auto;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -92,17 +147,19 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-  /* 1. Add the Overlay Animation */
+/* 1. Add the Overlay Animation */
 .nav-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #212121; /* Your 'ink' color */
+  background-color: #212121;
+  /* Your 'ink' color */
   z-index: 40;
   transform: translateY(-100%);
-  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1); /* Smooth slide */
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  /* Smooth slide */
 }
 
 .nav-overlay.active {
@@ -118,16 +175,122 @@ html.lenis, html.lenis body {
   left: 2rem;
   z-index: 60;
   cursor: pointer;
-  color: #ffffff; /* 'snow' color */
+  color: #ffffff;
+  /* 'snow' color */
   transition: color 0.3s ease;
 }
 
 .menu-toggle-btn:hover {
-  color: #FFFEFD; /* Your 'accent' color */
+  color: #FFFEFD;
+  /* Your 'accent' color */
 }
 
+/* =========================================
+   LIGHT MODE OVERRIDES
+   ========================================= */
+html.light-mode body {
+  background-color: #c2c2c2;
+  color: #444444;
+}
+
+html.light-mode ::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+html.light-mode ::-webkit-scrollbar-thumb {
+  background: #f0f0f0;
+  border-radius: 2px;
+}
+
+html.light-mode ::selection {
+  background: #333333;
+  color: #ffffff;
+}
+
+/* Noise overlay — softer in light mode */
+html.light-mode .noise::after {
+  opacity: 0.12;
+}
+
+/* Main page background & text */
+html.light-mode .bg-neutral-950 {
+  background-color: #c2c2c2 !important;
+  color: #333333 !important;
+}
+
+/* Nav overlay */
+html.light-mode .nav-overlay {
+  background-color: #f5f5f5;
+}
+
+/* Nav links */
+html.light-mode .nav-overlay button,
+html.light-mode .nav-overlay a {
+  color: #333333 !important;
+}
+
+html.light-mode .nav-overlay button:hover,
+html.light-mode .nav-overlay a:hover {
+  color: #555555 !important;
+}
+
+/* Hamburger lines */
+html.light-mode .menu-toggle-btn,
+html.light-mode .bg-snow {
+  background-color: #333333 !important;
+}
+
+/* Text colours */
+html.light-mode .text-white,
+html.light-mode .text-snow,
+html.light-mode .text-gray-400,
+html.light-mode .text-neutral-400,
+html.light-mode .text-ghost,
+html.light-mode .text-muted {
+  color: #2b2a2a !important;
+}
+
+/* Override text gradient */
+html.light-mode .text-gradient {
+  background: linear-gradient(135deg, #000000 0%, #36454F 80%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+/* Card / section backgrounds */
+html.light-mode .bg-neutral-900,
+html.light-mode .bg-neutral-800,
+html.light-mode .bg-card,
+html.light-mode .bg-surface,
+html.light-mode .bg-\[#e5e5e5\],
+html.light-mode .bg-\[\#212121\] {
+  background-color: #e5e5e5 !important;
+  color: #2b2a2a !important;
+}
+
+/* Borders */
+html.light-mode .border-neutral-800,
+html.light-mode .border-white\/10 {
+  border-color: #d4d4d4 !important;
+}
+
+/* Glow — subtle in light mode */
+html.light-mode .glow {
+  box-shadow: 0 0 40px rgb(196, 193, 193);
+}
+
+html.light-mode .card-hover:hover {
+  box-shadow: 0 20px 60px rgba(255, 252, 252, 0.801);
+}
+
+/* =========================================
+   CURSOR — hide on non-pointer devices
+   ========================================= */
 /* Hide default cursor on desktop browsers for interactive elements */
 @media (pointer: fine) {
+
   body,
   a,
   button,
@@ -135,4 +298,16 @@ html.lenis, html.lenis body {
   .cursor-pointer {
     cursor: none !important;
   }
+}
+
+/* Light Mode Overrides for Projects */
+html.light-mode .project-tag {
+  color: #2b2a2a !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light-mode .project-num {
+  color: #2b2a2a !important;
+  opacity: 0.15 !important;
 }

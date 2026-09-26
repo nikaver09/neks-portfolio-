@@ -28,7 +28,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-28 lg:py-36">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -39,7 +39,7 @@ export default function Projects() {
           <div className="flex-1 h-px bg-muted/30" />
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -84,7 +84,7 @@ export default function Projects() {
 
               <div className="relative space-y-6">
                 <div className="flex items-start justify-between">
-                  <span className="font-display text-5xl opacity-20" style={{ color: project.accent }}>{project.num}</span>
+                  <span className="project-num font-display text-5xl opacity-20" style={{ color: project.accent }}>{project.num}</span>
                   <div className="flex gap-3">
                     <a href={project.repo} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-muted/40 rounded-full flex items-center justify-center text-ghost hover:text-accent hover:border-accent transition-all">
                       <Terminal size={15} />
@@ -127,7 +127,7 @@ export default function Projects() {
               />
               <div className="relative space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-3xl opacity-30" style={{ color: project.accent }}>{project.num}</span>
+                  <span className="project-num font-display text-3xl opacity-30" style={{ color: project.accent }}>{project.num}</span>
                   <div className="flex gap-2">
                     <a href={project.repo} className="text-ghost hover:text-accent transition-colors"><Terminal size={14} /></a>
                     <a href={project.live} className="text-ghost hover:text-accent transition-colors"><ExternalLink size={14} /></a>

@@ -75,8 +75,8 @@ export default function CustomCursor() {
         }}
         animate={{
           scale: hovered ? 1.6 : 1,
-          backgroundColor: hovered ? "rgba(237, 239, 223, 0.15)" : "rgba(237, 239, 223, 0)",
-          borderColor: hovered ? "#EDEFDF" : "rgba(237, 239, 223, 0.4)",
+          backgroundColor: hovered ? "rgba(0, 0, 0, 0.15)" : "rgba(237, 239, 223, 0)",
+          borderColor: hovered ? "#fcfcfcff" : "rgba(237, 239, 223, 0.4)",
         }}
         transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
       />

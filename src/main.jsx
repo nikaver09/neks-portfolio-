@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import '@fontsource/geist-sans';
+import '@fontsource/geist-sans/800.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

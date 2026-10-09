@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @layer base {
   * {
@@ -250,6 +250,11 @@ html.light-mode .text-muted {
   color: #2b2a2a !important;
 }
 
+/* Make placeholder text lighter in light mode */
+html.light-mode ::placeholder {
+  color: #8a8a8a !important;
+}
+
 /* Override text gradient */
 html.light-mode .text-gradient {
   background: linear-gradient(135deg, #000000 0%, #36454F 80%) !important;
@@ -265,7 +270,8 @@ html.light-mode .bg-neutral-800,
 html.light-mode .bg-card,
 html.light-mode .bg-surface,
 html.light-mode .bg-\[#e5e5e5\],
-html.light-mode .bg-\[\#212121\] {
+html.light-mode .bg-\[\#212121\],
+html.light-mode .bg-ink {
   background-color: #e5e5e5 !important;
   color: #2b2a2a !important;
 }

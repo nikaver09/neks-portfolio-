@@ -62,13 +62,13 @@ export default function Hero({ onNavigateToCertificates }) {
               <h1
                 className="font-display leading-[1.05] tracking-tight"
                 style={{
-                  fontFamily: "'Bricolage Grotesque', sans-serif",
+                  fontFamily: "'Geist Sans', sans-serif",
                   fontWeight: 800,
                   fontSize: "clamp(2.4rem, 10vw, 6rem)",
                 }}
               >
                 <span className="text-gradient block">NICOS</span>
-                <span className="text-gradient block ml-2 sm:ml-6 lg:ml-10">AVERGONZADO</span>
+                <span className="text-gradient block ml-1 sm:ml-6 lg:ml-6">AVERGONZADO</span>
               </h1>
               <h2 className="font-heading font-semibold text-lg sm:text-xl lg:text-3xl text-snow/80 leading-snug">
                 I craft digital experiences<br className="hidden xs:block" /> that{" "}

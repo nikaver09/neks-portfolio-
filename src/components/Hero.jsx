@@ -28,18 +28,12 @@ export default function Hero({ onNavigateToCertificates }) {
       {/* Custom Cursor Spotlight — hidden on touch devices */}
       <div
         ref={cursorRef}
-        className="pointer-events-none fixed w-[400px] h-[400px] rounded-full opacity-10 transition-transform duration-700 ease-out hidden md:block"
-        style={{ background: "radial-gradient(circle, #D1D5D0 0%, transparent 70%)", zIndex: 0 }}
+        className="hero-cursor-glow pointer-events-none fixed w-[400px] h-[400px] rounded-full opacity-10 transition-transform duration-700 ease-out hidden md:block"
+        style={{ zIndex: 0 }}
       />
 
       {/* Background Grid */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: "linear-gradient(#D1D5D0 1px, transparent 1px), linear-gradient(90deg, #D1D5D0 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      <div className="absolute inset-0 opacity-5 hero-grid" />
 
       {/* Background Abstract Rings — hidden on small screens to avoid overflow */}
       <div className="absolute top-32 right-12 w-72 h-72 border border-muted/20 rounded-full animate-spin-slow opacity-30 hidden sm:block" />

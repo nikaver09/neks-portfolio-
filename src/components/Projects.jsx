@@ -22,6 +22,26 @@ const projects = [
     featured: true,
     accent: "#acd7faff",
   },
+  {
+    num: "03",
+    title: "Soundscape-IoTsystem",
+    desc: "The Soundscape IoT System is an Internet of Things (IoT)-driven data telemetry and automated soundscape regulation solution. The system is designed to continuously monitor environmental metrics—specifically noise levels and ambient climate conditions—and dynamically manage ambient acoustics. When ambient noise exceeds defined comfort thresholds, the system automatically triggers acoustic masking (e.g., sound masking or pink/white noise) to maintain an acoustically comfortable environment.",
+    tags: ["Next.js", "vite"],
+    live: "https://soundscape-iotsystem.vercel.app/",
+    repo: "https://github.com/nikaver09/soundscape-Iotsystem.git",
+    featured: true,
+    accent: "#ffb4a2ff",
+  },
+  {
+    num: "04",
+    title: "stock-logger",
+    desc: "Stock-Logger is an inventory and stock management application designed to track, log, and monitor inventory levels and stock movements. It helps users maintain accurate records of incoming and outgoing goods, reduce manual logging errors, and keep real-time visibility over item quantities.",
+    tags: ["Next.js", "TypeScript"],
+    live: "https://stock-logger.vercel.app/",
+    repo: "https://github.com/nikaver09/Stock-logger.git",
+    featured: true,
+    accent: "#b5e2cbff",
+  },
 ];
 
 export default function Projects() {
@@ -102,7 +122,7 @@ export default function Projects() {
 
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map(t => (
-                    <span key={t} className="font-mono text-xs px-3 py-1 rounded-full bg-muted/20 border border-muted/30" style={{ color: project.accent }}>{t}</span>
+                    <span key={t} className="project-tag font-mono text-xs px-3 py-1 rounded-full bg-muted/20 border border-muted/30" style={{ color: project.accent }}>{t}</span>
                   ))}
                 </div>
               </div>
@@ -137,7 +157,7 @@ export default function Projects() {
                 <p className="font-body text-ghost text-sm leading-relaxed line-clamp-3">{project.desc}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {project.tags.slice(0, 2).map(t => (
-                    <span key={t} className="font-mono text-[10px] px-2 py-0.5 rounded-full bg-muted/20 border border-muted/30 text-ghost">{t}</span>
+                    <span key={t} className="project-tag font-mono text-[10px] px-2 py-0.5 rounded-full bg-muted/20 border border-muted/30 text-ghost">{t}</span>
                   ))}
                 </div>
               </div>

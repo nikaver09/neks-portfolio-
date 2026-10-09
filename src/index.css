@@ -317,3 +317,23 @@ html.light-mode .project-num {
   color: #2b2a2a !important;
   opacity: 0.15 !important;
 }
+
+/* Hero Background Grid & Cursor Glow */
+.hero-grid {
+  background-image: linear-gradient(#D1D5D0 1px, transparent 1px), linear-gradient(90deg, #D1D5D0 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-cursor-glow {
+  background: radial-gradient(circle, #D1D5D0 0%, transparent 70%);
+}
+
+html.light-mode .hero-grid {
+  background-image: linear-gradient(#2b2a2a 1px, transparent 1px), linear-gradient(90deg, #2b2a2a 1px, transparent 1px);
+  opacity: 0.08 !important;
+}
+
+html.light-mode .hero-cursor-glow {
+  background: radial-gradient(circle, #2b2a2a 0%, transparent 70%);
+  opacity: 0.08 !important;
+}

@@ -1,97 +1,74 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function CustomCursor() {
-  const [hovered, setHovered] = useState(false);
-  const [hidden, setHidden] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+const interactiveSelector = "a, button, input, textarea, select, [role='button'], [data-cursor]";
 
+export default function CustomCursor() {
+  const [enabled, setEnabled] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState(false);
+  const [label, setLabel] = useState("OPEN");
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-
-  // Smooth spring physics for the outer ring trailing effect
-  const springConfig = { damping: 30, stiffness: 280, mass: 0.6 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
+  const trailX = useSpring(cursorX, { damping: 28, stiffness: 380, mass: 0.45 });
+  const trailY = useSpring(cursorY, { damping: 28, stiffness: 380, mass: 0.45 });
 
   useEffect(() => {
-    // Detect touch devices to disable custom cursor and prevent visual glitches
-    const checkDevice = () => {
-      const isTouch = window.matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
-      setIsMobile(isTouch);
-    };
-    checkDevice();
+    const pointerQuery = window.matchMedia("(pointer: fine)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateEnabled = () => setEnabled(pointerQuery.matches && !motionQuery.matches);
 
-    const moveCursor = (e) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      if (hidden) setHidden(false);
-    };
-
-    const handleMouseLeave = () => setHidden(true);
-    const handleMouseEnter = () => setHidden(false);
-
-    window.addEventListener("mousemove", moveCursor);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("mouseenter", handleMouseEnter);
+    updateEnabled();
+    pointerQuery.addEventListener("change", updateEnabled);
+    motionQuery.addEventListener("change", updateEnabled);
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor);
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-    };
-  }, [hidden, cursorX, cursorY]);
-
-  useEffect(() => {
-    const handleMouseOver = (e) => {
-      const target = e.target;
-      const isInteractive =
-        target.tagName === "A" ||
-        target.tagName === "BUTTON" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        target.getAttribute("role") === "button" ||
-        target.classList.contains("cursor-pointer");
-
-      setHovered(!!isInteractive);
-    };
-
-    window.addEventListener("mouseover", handleMouseOver);
-    return () => {
-      window.removeEventListener("mouseover", handleMouseOver);
+      pointerQuery.removeEventListener("change", updateEnabled);
+      motionQuery.removeEventListener("change", updateEnabled);
     };
   }, []);
 
-  if (isMobile || hidden) return null;
+  useEffect(() => {
+    if (!enabled) {
+      document.documentElement.classList.remove("has-custom-cursor");
+      return undefined;
+    }
+
+    document.documentElement.classList.add("has-custom-cursor");
+
+    const handleMove = (event) => {
+      cursorX.set(event.clientX);
+      cursorY.set(event.clientY);
+      setVisible(true);
+
+      const target = event.target instanceof Element ? event.target.closest(interactiveSelector) : null;
+      setActive(Boolean(target));
+      setLabel(target?.getAttribute("data-cursor") || "OPEN");
+    };
+
+    const hideCursor = () => setVisible(false);
+    const showCursor = () => setVisible(true);
+
+    window.addEventListener("pointermove", handleMove);
+    document.addEventListener("mouseleave", hideCursor);
+    document.addEventListener("mouseenter", showCursor);
+
+    return () => {
+      document.documentElement.classList.remove("has-custom-cursor");
+      window.removeEventListener("pointermove", handleMove);
+      document.removeEventListener("mouseleave", hideCursor);
+      document.removeEventListener("mouseenter", showCursor);
+    };
+  }, [cursorX, cursorY, enabled]);
+
+  if (!enabled) return null;
 
   return (
-    <>
-      {/* Outer Spring Ring */}
-      <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full border pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
-        style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
-        }}
-        animate={{
-          scale: hovered ? 1.6 : 1,
-          backgroundColor: hovered ? "rgba(0, 0, 0, 0.15)" : "rgba(237, 239, 223, 0)",
-          borderColor: hovered ? "#fcfcfcff" : "rgba(237, 239, 223, 0.4)",
-        }}
-        transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
-      />
-      {/* Inner Pinpoint Dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-accent pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
-        style={{
-          x: cursorX,
-          y: cursorY,
-        }}
-        animate={{
-          scale: hovered ? 0.4 : 1,
-        }}
-        transition={{ type: "tween", ease: "linear", duration: 0.1 }}
-      />
-    </>
+    <div className={`custom-cursor ${visible ? "custom-cursor--visible" : ""} ${active ? "custom-cursor--active" : ""}`} aria-hidden="true">
+      <motion.div className="custom-cursor__trail" style={{ x: trailX, y: trailY }}>
+        <div className="custom-cursor__ring"><span>{label}</span></div>
+      </motion.div>
+      <motion.div className="custom-cursor__point" style={{ x: cursorX, y: cursorY }} />
+    </div>
   );
 }

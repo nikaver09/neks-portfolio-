@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import SmoothScroll from "./components/SmoothScroll";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -12,8 +12,6 @@ import Footer from "./components/Footer";
 import CertificatesPage from "./components/CertificatesPage";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
-import ThemeToggle from "./components/ThemeToggle";
-import { ThemeProvider } from "./context/ThemeContext";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("portfolio");
@@ -24,38 +22,29 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  const handleLoaderComplete = useCallback(() => {
-    setIsLoading(false);
-  }, []);
+  const handleLoaderComplete = useCallback(() => setIsLoading(false), []);
 
   return (
-    <ThemeProvider>
-      <SmoothScroll>
-        <CustomCursor />
-        {/* Loader overlay */}
-        {isLoading && <Loader onComplete={handleLoaderComplete} />}
-
-        <div className={`noise min-h-screen bg-neutral-950 text-white selection:bg-[#e8ff47] selection:text-black ${isLoading ? "overflow-hidden h-screen" : ""}`}>
-          <ThemeToggle />
-          {currentPage === "portfolio" ? (
-            <>
-              <Navbar />
-              <Hero 
-                onNavigateToCertificates={() => handlePageChange("certificates")}
-              />
-              <Ticker />
-              <About />
-              <Skills />
-              <Projects />
-              <Experience />
-              <Contact />
-              <Footer />
-            </>
-          ) : (
-            <CertificatesPage onBack={() => handlePageChange("portfolio")} />
-          )}
-        </div>
-      </SmoothScroll>
-    </ThemeProvider>
+    <SmoothScroll>
+      {isLoading && <Loader onComplete={handleLoaderComplete} />}
+      {!isLoading && <CustomCursor />}
+      <main className={`app-shell ${isLoading ? "app-shell--locked" : ""}`}>
+        {currentPage === "portfolio" ? (
+          <>
+            <Navbar onNavigateToCertificates={() => handlePageChange("certificates")} />
+            <Hero onNavigateToCertificates={() => handlePageChange("certificates")} />
+            <Ticker />
+            <About />
+            <Skills />
+            <Projects />
+            <Experience />
+            <Contact />
+            <Footer />
+          </>
+        ) : (
+          <CertificatesPage onBack={() => handlePageChange("portfolio")} />
+        )}
+      </main>
+    </SmoothScroll>
   );
 }

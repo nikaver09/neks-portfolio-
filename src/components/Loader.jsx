@@ -1,217 +1,65 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+
+const mark = ["N", "K"];
 
 export default function Loader({ onComplete }) {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState("loading"); // loading -> reveal -> done
+  const [leaving, setLeaving] = useState(false);
 
-  // Simulate loading progress
   useEffect(() => {
-    const duration = 1500; // total loading time in ms
-    const interval = 20;   // refresh interval
-    const step = 100 / (duration / interval);
-    let current = 0;
+    const startedAt = performance.now();
+    const duration = 1450;
+    let frameId;
 
-    const timer = setInterval(() => {
-      current += step + Math.random() * step * 0.3;
-      if (current >= 100) {
-        current = 100;
-        clearInterval(timer);
-        // Start reveal phase after a brief pause
-        setTimeout(() => setPhase("reveal"), 600);
+    const update = (now) => {
+      const elapsed = Math.min(1, (now - startedAt) / duration);
+      const next = (1 - ((1 - elapsed) ** 3)) * 100;
+      setProgress(next);
+
+      if (next < 100) {
+        frameId = requestAnimationFrame(update);
+        return;
       }
-      setProgress(Math.min(current, 100));
-    }, interval);
 
-    return () => clearInterval(timer);
-  }, []);
+      setLeaving(true);
+      window.setTimeout(onComplete, 780);
+    };
 
-  // After reveal animation completes, notify parent
-  useEffect(() => {
-    if (phase === "reveal") {
-      const timer = setTimeout(() => {
-        setPhase("done");
-        onComplete();
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [phase, onComplete]);
+    frameId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frameId);
+  }, [onComplete]);
 
   return (
-    <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black transition-all duration-[1000ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${phase === "reveal" || phase === "done"
-        ? "opacity-0 pointer-events-none scale-[1.1]"
-        : "opacity-100"
-        }`}
-    >
-      <style>{`
-        .perspective-container {
-          perspective: 1000px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 250px;
-          width: 100%;
-        }
-
-        .base {
-          --box-width: 50px;
-          --box-height: 50px;
-          --box-depth: 100px;
-          width: 110px;
-          height: 110px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          transform-style: preserve-3d;
-          transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg);
-          animation: rotate 6s linear infinite;
-        }
-
-        .cube {
-          position: relative;
-          width: var(--box-width);
-          height: var(--box-height);
-          transform-style: preserve-3d;
-          animation: grow 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite alternate-reverse;
-        }
-
-        .cube:nth-of-type(1) {
-          animation-delay: 0s;
-        }
-        .cube:nth-of-type(2) {
-          animation-delay: 0.2s;
-        }
-        .cube:nth-of-type(3) {
-          animation-delay: 0.4s;
-        }
-        .cube:nth-of-type(4) {
-          animation-delay: 0.6s;
-        }
-
-        .face {
-          position: absolute;
-          top: 0;
-          left: 0;
-          transform-style: preserve-3d;
-        }
-
-        .side-front,
-        .side-back {
-          width: var(--box-width);
-          height: var(--box-height);
-          background-color: #FFFEFD; /* snow */
-        }
-
-        .side-front {
-          transform: translateZ(50px);
-        }
-
-        .side-back {
-          transform: translateZ(-50px);
-        }
-
-        .side-left,
-        .side-right {
-          width: var(--box-depth);
-          height: var(--box-height);
-          background-color: #EDEFDF; /* accent */
-          left: 50%;
-          top: 50%;
-        }
-
-        .side-left {
-          transform: translate(-50%, -50%) rotateY(-90deg) translateZ(25px);
-        }
-
-        .side-right {
-          transform: translate(-50%, -50%) rotateY(90deg) translateZ(25px);
-        }
-
-        .side-top,
-        .side-bottom {
-          width: var(--box-width);
-          height: var(--box-depth);
-          background-color: #C1C3B4; /* shaded accent shadow */
-          left: 50%;
-          top: 50%;
-        }
-
-        .side-top {
-          transform: translate(-50%, -50%) rotateX(-90deg) translateZ(25px);
-        }
-
-        .side-bottom {
-          transform: translate(-50%, -50%) rotateX(90deg) translateZ(25px);
-        }
-
-        @keyframes rotate {
-          from {
-            transform: rotateX(60deg) rotateZ(45deg) rotateY(0deg);
-          }
-          to {
-            transform: rotateX(60deg) rotateZ(405deg) rotateY(0deg);
-          }
-        }
-
-        @keyframes grow {
-          0% {
-            transform: scaleZ(0.2);
-          }
-          100% {
-            transform: scaleZ(1.8);
-          }
-        }
-      `}</style>
-
-      {/* Main content */}
+    <div className={`site-loader ${leaving ? "site-loader--leaving" : ""}`} aria-label="Loading portfolio" aria-live="polite">
+      <div className="site-loader__panel site-loader__panel--top" aria-hidden="true" />
+      <div className="site-loader__panel site-loader__panel--bottom" aria-hidden="true" />
+      <div className="site-loader__glow" aria-hidden="true" />
+      <div className="site-loader__topline">
+      </div>
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-8 cursor-default"
+        className="site-loader__center"
+        animate={leaving ? { opacity: 0, scale: 1.06, filter: "blur(12px)" } : { opacity: 1, scale: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
       >
-        {/* 3D Columns Loader Grid */}
-        <div className="perspective-container">
-          <div className="base">
-            {/* Cube 1 */}
-            <div className="cube">
-              <div className="face side-front" />
-              <div className="face side-back" />
-              <div className="face side-left" />
-              <div className="face side-right" />
-              <div className="face side-top" />
-              <div className="face side-bottom" />
-            </div>
-            {/* Cube 2 */}
-            <div className="cube">
-              <div className="face side-front" />
-              <div className="face side-back" />
-              <div className="face side-left" />
-              <div className="face side-right" />
-              <div className="face side-top" />
-              <div className="face side-bottom" />
-            </div>
-            {/* Cube 3 */}
-            <div className="cube">
-              <div className="face side-front" />
-              <div className="face side-back" />
-              <div className="face side-left" />
-              <div className="face side-right" />
-              <div className="face side-top" />
-              <div className="face side-bottom" />
-            </div>
-            {/* Cube 4 */}
-            <div className="cube">
-              <div className="face side-front" />
-              <div className="face side-back" />
-              <div className="face side-left" />
-              <div className="face side-right" />
-              <div className="face side-top" />
-              <div className="face side-bottom" />
-            </div>
-          </div>
+        <p className="site-loader__word" aria-label="NK">
+          {mark.map((letter, index) => (
+            <span className="site-loader__letter-wrap" key={letter}>
+              <motion.span
+                className="site-loader__letter"
+                initial={{ y: "112%", rotate: 8 }}
+                animate={{ y: 0, rotate: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {letter}
+              </motion.span>
+            </span>
+          ))}
+        </p>
+        <div className="site-loader__progress" aria-hidden="true">
+          <span style={{ transform: `scaleX(${progress / 100})` }} />
         </div>
-
-
-
+        <p className="site-loader__count">{String(Math.round(progress)).padStart(3, "0")}%</p>
       </motion.div>
     </div>
   );

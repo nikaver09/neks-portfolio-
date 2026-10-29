@@ -1,169 +1,183 @@
-import { ExternalLink, Terminal } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { ArrowUpRight, GitBranch, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projects = [
   {
-    num: "01",
-    title: "CookbotAI",
-    desc: "AI-powered recipe generator that creates personalized meal ideas based on user preferences, dietary restrictions, and available ingredients.",
-    tags: ["Vite", "TypeScript", "Node.js", "Python", "OpenAI API"],
+    number: "01",
+    title: "Cookbot AI",
+    type: "AI PRODUCT",
+    year: "2025",
+    desc: "An AI-powered recipe generator that turns ingredients, preferences, and dietary needs into useful meal ideas.",
+    tags: ["Vite", "TypeScript", "Node.js", "OpenAI API"],
     live: "https://cookbot-ai.vercel.app/",
     repo: "https://github.com/nikaver09/Cookbot-AI.git",
-    featured: true,
-    accent: "#f8ffc8ff",
+    image: "/images2/cookbot_preview.png",
   },
   {
-    num: "02",
+    number: "02",
     title: "E-Jeepney System",
-    desc: "A comprehensive E-Jeepney System that integrates both a mobile application and a web application represents the digital backbone of the Philippines' Public Utility Vehicle Modernization Program",
-    tags: ["React", "Node.js", "Vite + TypeScript", "Geospatial APIs", "Real-time Tracking"],
+    type: "MOBILITY",
+    year: "2025",
+    desc: "A digital backbone for public transport — combining route information, real-time tracking, and rider-facing tools.",
+    tags: ["React", "Node.js", "Geospatial APIs", "Real-time"],
     live: "https://e-jeepney-system.vercel.app",
     repo: "https://github.com/nikaver09/E-jeepney-system.git",
-    featured: true,
-    accent: "#acd7faff",
+    image: "/images2/ejeepney_preview.png",
   },
   {
-    num: "03",
-    title: "Soundscape-IoTsystem",
-    desc: "The Soundscape IoT System is an Internet of Things (IoT)-driven data telemetry and automated soundscape regulation solution. The system is designed to continuously monitor environmental metrics—specifically noise levels and ambient climate conditions—and dynamically manage ambient acoustics. When ambient noise exceeds defined comfort thresholds, the system automatically triggers acoustic masking (e.g., sound masking or pink/white noise) to maintain an acoustically comfortable environment.",
-    tags: ["Next.js", "vite"],
+    number: "03",
+    title: "Soundscape IoT",
+    type: "IOT SYSTEM",
+    year: "2025",
+    desc: "A telemetry and soundscape-control system built to monitor environmental conditions and respond in real time.",
+    tags: ["Next.js", "IoT", "Telemetry", "Python"],
     live: "https://soundscape-iotsystem.vercel.app/",
     repo: "https://github.com/nikaver09/soundscape-Iotsystem.git",
-    featured: true,
-    accent: "#ffb4a2ff",
+    image: "/images2/soundscape_preview.png",
   },
   {
-    num: "04",
-    title: "stock-logger",
-    desc: "Stock-Logger is an inventory and stock management application designed to track, log, and monitor inventory levels and stock movements. It helps users maintain accurate records of incoming and outgoing goods, reduce manual logging errors, and keep real-time visibility over item quantities.",
-    tags: ["Next.js", "TypeScript"],
+    number: "04",
+    title: "Stock Logger",
+    type: "OPERATIONS",
+    year: "2025",
+    desc: "A streamlined inventory workspace for logging movements, tracking stock levels, and reducing manual errors.",
+    tags: ["Next.js", "TypeScript", "Inventory"],
     live: "https://stock-logger.vercel.app/",
     repo: "https://github.com/nikaver09/Stock-logger.git",
-    featured: true,
-    accent: "#b5e2cbff",
+    image: "/images2/stocklogger_preview.png",
   },
 ];
 
-export default function Projects() {
-  return (
-    <section id="projects" className="py-28 lg:py-36">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-4 mb-16"
-        >
-          <span className="font-mono text-xs text-accent uppercase tracking-[0.3em]">03 — Projects</span>
-          <div className="flex-1 h-px bg-muted/30" />
-        </motion.div>
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6"
-        >
-          <div>
-            <h2 className="font-heading font-bold text-4xl lg:text-5xl leading-tight mb-4">
-              Selected <span className="text-accent">work</span>
-            </h2>
-            <p className="font-body text-ghost text-lg max-w-xl">
-              A collection of digital products and experiments built with modern technologies.
-            </p>
-          </div>
-          <motion.a
-            whileHover={{ x: 5 }}
+const cardVariants = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+};
+
+export default function Projects() {
+  const [hovered, setHovered] = useState(null);
+
+  return (
+    <section id="projects" className="section section--paper work-section">
+      <div className="section-shell">
+
+        <div className="section-marker">
+          <span>03</span>
+          <span>SELECTED WORK</span>
+          <a
             href="https://github.com/nikaver09"
             target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-ghost hover:text-accent font-mono text-sm transition-colors uppercase tracking-widest group"
+            rel="noreferrer"
+            aria-label="View all projects on GitHub"
           >
-            All projects <ExternalLink size={14} className="group-hover:rotate-45 transition-transform" />
-          </motion.a>
+            ALL PROJECTS <ArrowUpRight size={14} />
+          </a>
+        </div>
+
+        <div className="work-heading">
+          <h2 className="section-display section-display--dark">
+            MADE TO<br />
+            <em>MOVE.</em>
+          </h2>
+          <p>Selected work across products, platforms, and useful digital experiments.</p>
+        </div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-80px" }}
+          className="projects-grid"
+        >
+          {projects.map((project, i) => (
+            <motion.article
+              key={project.number}
+              variants={cardVariants}
+              className="project-card"
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <div className="project-card__image-wrap">
+                <img
+                  src={project.image}
+                  alt={project.title + " screenshot"}
+                  className="project-card__image"
+                  draggable={false}
+                />
+                <AnimatePresence>
+                  {hovered === i && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="project-card__overlay"
+                    >
+                      <div className="project-card__overlay-links">
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="project-card__overlay-btn"
+                            aria-label={"Open " + project.title + " live demo"}
+                          >
+                            <ExternalLink size={15} />
+                            Live
+                          </a>
+                        )}
+                        {project.repo && (
+                          <a
+                            href={project.repo}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="project-card__overlay-btn project-card__overlay-btn--ghost"
+                            aria-label={"View " + project.title + " source code"}
+                          >
+                            <GitBranch size={15} />
+                            Code
+                          </a>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <span className="project-card__badge">{project.number}</span>
+              </div>
+
+              <div className="project-card__body">
+                <div className="project-card__meta">
+                  <span className="project-card__type">{project.type}</span>
+                  <span className="project-card__year">{project.year}</span>
+                </div>
+                <h3 className="project-card__title">{project.title}</h3>
+                <p className="project-card__desc">{project.desc}</p>
+                <div className="project-card__footer">
+                  <div className="project-card__tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="project-card__tag">{tag}</span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project-card__link"
+                    aria-label={"Open " + project.title}
+                  >
+                    <ArrowUpRight size={18} />
+                  </a>
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </motion.div>
 
-        {/* Featured projects */}
-        <div className="grid lg:grid-cols-2 gap-6 mb-6">
-          {projects.filter(p => p.featured).map((project, idx) => (
-            <motion.div
-              key={project.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.2 }}
-              className="card-hover group bg-card border border-muted/30 rounded-3xl p-8 lg:p-10 relative overflow-hidden"
-            >
-              {/* Glow */}
-              <div
-                className="absolute top-0 right-0 w-60 h-60 rounded-full opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                style={{ background: `radial-gradient(circle, ${project.accent} 0%, transparent 70%)`, transform: "translate(30%, -30%)" }}
-              />
-
-              <div className="relative space-y-6">
-                <div className="flex items-start justify-between">
-                  <span className="project-num font-display text-5xl opacity-20" style={{ color: project.accent }}>{project.num}</span>
-                  <div className="flex gap-3">
-                    <a href={project.repo} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-muted/40 rounded-full flex items-center justify-center text-ghost hover:text-accent hover:border-accent transition-all">
-                      <Terminal size={15} />
-                    </a>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="w-9 h-9 border border-muted/40 rounded-full flex items-center justify-center text-ghost hover:text-accent hover:border-accent transition-all">
-                      <ExternalLink size={15} />
-                    </a>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="font-heading font-bold text-2xl text-snow mb-3 group-hover:text-accent transition-colors">{project.title}</h3>
-                  <p className="font-body text-ghost leading-relaxed">{project.desc}</p>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map(t => (
-                    <span key={t} className="project-tag font-mono text-xs px-3 py-1 rounded-full bg-muted/20 border border-muted/30" style={{ color: project.accent }}>{t}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Grid projects */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {projects.filter(p => !p.featured).map((project, idx) => (
-            <motion.div
-              key={project.num}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 + (idx * 0.1) }}
-              className="card-hover group bg-card border border-muted/30 rounded-2xl p-6 relative overflow-hidden"
-            >
-              <div
-                className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none"
-                style={{ background: `radial-gradient(circle, ${project.accent} 0%, transparent 70%)`, transform: "translate(30%, -30%)" }}
-              />
-              <div className="relative space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="project-num font-display text-3xl opacity-30" style={{ color: project.accent }}>{project.num}</span>
-                  <div className="flex gap-2">
-                    <a href={project.repo} className="text-ghost hover:text-accent transition-colors"><Terminal size={14} /></a>
-                    <a href={project.live} className="text-ghost hover:text-accent transition-colors"><ExternalLink size={14} /></a>
-                  </div>
-                </div>
-                <h3 className="font-heading font-semibold text-snow group-hover:text-accent transition-colors">{project.title}</h3>
-                <p className="font-body text-ghost text-sm leading-relaxed line-clamp-3">{project.desc}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 2).map(t => (
-                    <span key={t} className="project-tag font-mono text-[10px] px-2 py-0.5 rounded-full bg-muted/20 border border-muted/30 text-ghost">{t}</span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

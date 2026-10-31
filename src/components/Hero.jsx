@@ -1,7 +1,7 @@
 import { ArrowDownRight, Award } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import WaveField from "./ui/WaveField";
+import { GradientBars } from "./ui/gradient-bars-background";
 
 function GithubIcon({ size = 16 }) {
   return (
@@ -43,8 +43,14 @@ export default function Hero({ onNavigateToCertificates }) {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#EDEDED]" id="hero">
-      {/* Animated Wave Field Background */}
-      <WaveField className="z-0" />
+      {/* Animated Gradient Bars Background */}
+      <GradientBars
+        numBars={15}
+        gradientFrom="rgb(64, 64, 64)"
+        gradientTo="transparent"
+        animationDuration={2.2}
+        className="pointer-events-none z-0"
+      />
 
       {/* Custom Cursor Spotlight */}
       <div
@@ -80,11 +86,11 @@ export default function Hero({ onNavigateToCertificates }) {
                 <span className="text-black">INTERFACE & ARCHITECTURE</span>
               </div>
 
-              <h1 className="font-tech text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4.25rem] 2xl:text-8xl leading-[1.02] tracking-[0.02em] sm:tracking-[0.04em] font-extralight uppercase select-none">
-                <span className="wireframe-outline block hover:text-black hover:[-webkit-text-stroke-width:0px] transition-all duration-300 cursor-default">
+              <h1 className="font-tech text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4.25rem] 2xl:text-8xl leading-[1.02] tracking-[0.02em] sm:tracking-[0.04em] font-semibold uppercase select-none text-black">
+                <span className="wireframe-outline block cursor-default text-black">
                   NICOS
                 </span>
-                <span className="wireframe-outline-muted block ml-2 sm:ml-4 lg:ml-6 hover:text-black hover:[-webkit-text-stroke:1.35px_#000000] transition-all duration-300 cursor-default">
+                <span className="wireframe-outline block ml-2 sm:ml-4 lg:ml-6 cursor-default text-black">
                   AVERGONZADO
                 </span>
               </h1>
@@ -151,14 +157,6 @@ export default function Hero({ onNavigateToCertificates }) {
           {/* Right Column: Framed Image Card */}
           <div className="flex justify-center lg:justify-end animate-fade-in order-1 lg:order-2">
             <div className="relative">
-              {/* Spinning gradient ring */}
-              <div
-                className="absolute -inset-3 rounded-3xl animate-spin-slow pointer-events-none"
-                style={{
-                  background: "conic-gradient(from 0deg, transparent 60%, rgba(0,0,0,0.3) 80%, transparent 100%)",
-                  opacity: 0.35,
-                }}
-              />
               {/* Static accent ring */}
               <div className="absolute -inset-1.5 rounded-3xl border border-black/20 pointer-events-none" />
 

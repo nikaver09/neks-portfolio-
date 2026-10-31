@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
 import GithubContributions from "./GithubContributions";
+import ScrollAnimation from "./ui/scroll-animation";
 
 const experiences = [
   ["Senior Frontend Developer", "TechCorp Inc.", "2023 — Present", "React · TypeScript · AWS"],
@@ -12,21 +12,40 @@ export default function Experience() {
   return (
     <section id="experience" className="section section--paper experience-section">
       <div className="section-shell">
-        <div className="section-marker"><span>04</span><span>EXPERIENCE</span></div>
-        <div className="experience-heading"><h2 className="section-display section-display--dark">WORK IN<br /><em>PROGRESS.</em></h2><p>A few roles and environments that have shaped how I make things.</p></div>
+        <ScrollAnimation direction="down" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+          <div className="section-marker"><span>04</span><span>EXPERIENCE</span></div>
+        </ScrollAnimation>
+
+        <div className="experience-heading">
+          <ScrollAnimation direction="left" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+            <h2 className="section-display section-display--dark">WORK IN<br /><em>PROGRESS.</em></h2>
+          </ScrollAnimation>
+          <ScrollAnimation direction="right" delay={0.15} viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+            <p>A few roles and environments that have shaped how I make things.</p>
+          </ScrollAnimation>
+        </div>
+
         <div className="experience-list">
           {experiences.map(([role, company, period, tools], index) => (
-            <motion.article key={`${company}-${role}`} className="experience-row" initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.35, delay: index * 0.06 }}>
+            <ScrollAnimation
+              key={`${company}-${role}`}
+              className="experience-row"
+              direction="down"
+              delay={index * 0.08}
+              viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
+            >
               <span className="experience-row__number">0{index + 1}</span>
               <h3>{role}<small>{company}</small></h3>
               <p>{tools}</p>
               <time>{period}</time>
-            </motion.article>
+            </ScrollAnimation>
           ))}
         </div>
 
         {/* GitHub Contribution Activity Heatmap right next to experience */}
-        <GithubContributions />
+        <ScrollAnimation direction="down" delay={0.2} viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+          <GithubContributions />
+        </ScrollAnimation>
       </div>
     </section>
   );

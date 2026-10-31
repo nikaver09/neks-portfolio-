@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import TextRoll from "./ui/text-roll";
 
 const links = [
   { label: "About", id: "about" },
@@ -118,7 +119,7 @@ export default function Navbar({ onNavigateToCertificates }) {
             }}
           />
 
-          <ul className="relative z-10 flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-5 text-center my-auto">
+          <ul className="relative z-10 flex flex-col items-center justify-center gap-2 sm:gap-2.5 md:gap-3 text-center my-auto">
             {links.map(({ label, id, isCertificates }, index) => {
               if (isCertificates && !onNavigateToCertificates) return null;
 
@@ -132,9 +133,12 @@ export default function Navbar({ onNavigateToCertificates }) {
                     duration: 0.35,
                     ease: [0.16, 1, 0.3, 1],
                   }}
+                  className="relative flex cursor-pointer flex-col items-center overflow-visible"
                 >
-                  <button
+                  <motion.button
                     type="button"
+                    initial="initial"
+                    whileHover="hovered"
                     onClick={() => {
                       if (isCertificates) {
                         setOpen(false);
@@ -143,10 +147,18 @@ export default function Navbar({ onNavigateToCertificates }) {
                         scrollTo(id);
                       }
                     }}
-                    className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-black hover:opacity-50 transition-all duration-200 tracking-wider hover:scale-105 transform inline-block focus:outline-none cursor-pointer"
+                    className="relative flex items-center justify-center focus:outline-none cursor-pointer group py-1"
+                    aria-label={`Navigate to ${label}`}
                   >
-                    {label}
-                  </button>
+                    <div className="relative flex items-start">
+                      <TextRoll
+                        center
+                        className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.85] font-extrabold tracking-[-0.03em] uppercase !text-black dark:!text-black transition-colors"
+                      >
+                        {label}
+                      </TextRoll>
+                    </div>
+                  </motion.button>
                 </motion.li>
               );
             })}
@@ -159,15 +171,22 @@ export default function Navbar({ onNavigateToCertificates }) {
                 duration: 0.35,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-3 sm:mt-4"
+              className="mt-4 sm:mt-5"
             >
-              <button
+              <motion.button
                 type="button"
+                initial="initial"
+                whileHover="hovered"
                 onClick={() => scrollTo("contact")}
-                className="inline-block border-2 border-black text-black bg-white/70 font-heading font-bold text-xs sm:text-sm px-7 sm:px-9 py-2.5 sm:py-3 rounded-full uppercase tracking-widest hover:bg-black hover:text-[#EDEDED] transition-all duration-300 hover:scale-105 shadow-sm focus:outline-none cursor-pointer"
+                className="inline-flex items-center justify-center border-2 border-black text-black bg-white/70 font-heading font-bold text-xs sm:text-sm px-7 sm:px-9 py-2.5 sm:py-3 rounded-full uppercase tracking-widest hover:bg-black hover:text-[#EDEDED] transition-all duration-300 hover:scale-105 shadow-sm focus:outline-none cursor-pointer group"
               >
-                HIRE ME
-              </button>
+                <TextRoll
+                  center
+                  className="font-heading font-bold text-xs sm:text-sm tracking-widest uppercase !text-black dark:!text-black group-hover:!text-[#EDEDED]"
+                >
+                  HIRE ME
+                </TextRoll>
+              </motion.button>
             </motion.li>
           </ul>
         </div>

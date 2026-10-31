@@ -1,15 +1,32 @@
-import Component from "@/components/ui/gradient-bars-background";
+import TextRoll from "@/components/ui/text-roll";
 
-const settings = {
-  numBars: 15,
-  gradientColor: "rgb(64, 64, 64)",
-};
+const navigationItems = [
+  { name: "Home" },
+  { name: "Components" },
+  { name: "Pricing" },
+  { name: "How to use" },
+  { name: "Account" },
+  { name: "Login" },
+];
 
-export default function Demo(props: Partial<typeof settings>) {
-  const s = { ...settings, ...props };
+export default function TextRollDemo() {
   return (
-    <div className="h-screen w-screen">
-      <Component numBars={s.numBars} gradientFrom={s.gradientColor} />
-    </div>
+    <ul className="flex min-h-screen w-full flex-1 flex-col items-center justify-center gap-1.5 rounded-2xl px-7 py-3">
+      {navigationItems.map((item, index) => (
+        <li
+          className="relative flex cursor-pointer flex-col items-center overflow-visible"
+          key={index}
+        >
+          <div className="relative flex items-start">
+            <TextRoll
+              center
+              className="text-4xl leading-[0.8] font-extrabold tracking-[-0.03em] uppercase transition-colors lg:text-5xl"
+            >
+              {item.name}
+            </TextRoll>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }

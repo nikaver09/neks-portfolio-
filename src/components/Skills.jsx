@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import ScrollAnimation from "./ui/scroll-animation";
 
 const capabilities = [
   {
@@ -25,20 +25,27 @@ export default function Skills() {
   return (
     <section id="skills" className="section capabilities-section">
       <div className="section-shell">
-        <div className="section-marker"><span>02</span><span>CAPABILITIES</span></div>
+        <ScrollAnimation direction="down" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+          <div className="section-marker"><span>02</span><span>CAPABILITIES</span></div>
+        </ScrollAnimation>
+
         <div className="capabilities-heading">
-          <h2 className="section-display">DESIGNED TO<br /><em>DELIVER.</em></h2>
-          <p>From the interface people touch to the systems that keep it reliable, I build the full experience.</p>
+          <ScrollAnimation direction="left" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+            <h2 className="section-display">DESIGNED TO<br /><em>DELIVER.</em></h2>
+          </ScrollAnimation>
+          <ScrollAnimation direction="right" delay={0.15} viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+            <p>From the interface people touch to the systems that keep it reliable, I build the full experience.</p>
+          </ScrollAnimation>
         </div>
+
         <div className="capabilities-grid">
           {capabilities.map((capability, index) => (
-            <motion.article
-              className="capability"
+            <ScrollAnimation
               key={capability.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="capability"
+              direction="down"
+              delay={index * 0.1}
+              viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
             >
               <header><span>{capability.id}</span><span>0{index + 1} / 03</span></header>
               <h3>{capability.title}</h3>
@@ -46,7 +53,7 @@ export default function Skills() {
               <ul>
                 {capability.items.map((item) => <li key={item}>{item}<b>↗</b></li>)}
               </ul>
-            </motion.article>
+            </ScrollAnimation>
           ))}
         </div>
       </div>

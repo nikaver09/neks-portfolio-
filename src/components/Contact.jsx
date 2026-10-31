@@ -3,6 +3,7 @@ import { ArrowUpRight, Mail, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { supabase } from "../lib/supabase";
+import ScrollAnimation from "./ui/scroll-animation";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
@@ -50,18 +51,30 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact-section">
       <div className="section-shell">
-        <div className="section-marker"><span>05</span><span>CONTACT</span></div>
+        <ScrollAnimation direction="down" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
+          <div className="section-marker"><span>05</span><span>CONTACT</span></div>
+        </ScrollAnimation>
+
         <div className="contact-layout">
-          <div className="contact-copy">
+          <ScrollAnimation
+            direction="left"
+            viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
+            className="contact-copy"
+          >
             <h2 className="section-display">HAVE A GOOD<br /><em>IDEA?</em></h2>
             <p>Whether it&apos;s a product to ship, a role to discuss, or a problem worth solving, I&apos;d love to hear it.</p>
             <div className="contact-details">
               <a href="mailto:nkavs777@gmail.com"><Mail size={17} /> NKAVS777@GMAIL.COM <ArrowUpRight size={14} /></a>
               <span><MapPin size={17} /> PHILIPPINES / OPEN TO REMOTE</span>
             </div>
-          </div>
+          </ScrollAnimation>
 
-          <div className="contact-panel">
+          <ScrollAnimation
+            direction="right"
+            delay={0.15}
+            viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
+            className="contact-panel"
+          >
             <AnimatePresence mode="wait">
               {!isFormOpen ? (
                 <motion.div
@@ -132,7 +145,7 @@ export default function Contact() {
                 </motion.form>
               )}
             </AnimatePresence>
-          </div>
+          </ScrollAnimation>
         </div>
       </div>
     </section>

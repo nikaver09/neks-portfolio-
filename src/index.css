@@ -45,7 +45,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; background: #EDEDED; color: #000000; scrollbar-gutter: stable; }
+html { scroll-behavior: smooth; background: #EDEDED; color: #000000; scrollbar-width: none; -ms-overflow-style: none; }
 
 body {
   margin: 0;
@@ -65,9 +65,7 @@ img { display: block; max-width: 100%; }
 ::selection { color: #EDEDED; background: #000000; }
 :focus-visible { outline: 2px solid #000000; outline-offset: 4px; }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #EDEDED; }
-::-webkit-scrollbar-thumb { background: #cccccc; }
+::-webkit-scrollbar { display: none; }
 
 .app-shell { min-height: 100vh; background: #EDEDED; color: #000000; overflow: clip; }
 .app-shell--locked { height: 100vh; overflow: hidden; }

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
+import App from './App.jsx'
 import '@fontsource/geist-sans';
 import '@fontsource/geist-sans/800.css';
 import { ThemeProvider } from './context/ThemeContext';

@@ -13,23 +13,22 @@ const generateVariants = (
   direction: Direction
 ): { hidden: Variant; visible: Variant } => {
   const axis = direction === 'left' || direction === 'right' ? 'x' : 'y';
-  const value = direction === 'right' || direction === 'down' ? 100 : -100;
+  const value = direction === 'right' || direction === 'down' ? 24 : -24;
 
   return {
-    hidden: { filter: 'blur(10px)', opacity: 0, [axis]: value },
+    hidden: { opacity: 0, [axis]: value },
     visible: {
-      filter: 'blur(0px)',
       opacity: 1,
       [axis]: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 };
 
-const defaultViewport = { amount: 0.3, margin: '0px 0px -200px 0px' };
+const defaultViewport = { amount: 0.15, once: true };
 
 type MotionComponentProps = HTMLMotionProps<any> & SVGMotionProps<any>;
 

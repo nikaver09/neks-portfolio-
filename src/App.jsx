@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import CertificatesPage from "./components/CertificatesPage";
 import Loader from "./components/Loader";
 import CustomCursor from "./components/CustomCursor";
+import "./App.css";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("portfolio");
@@ -28,23 +29,30 @@ export default function App() {
     <SmoothScroll>
       {isLoading && <Loader onComplete={handleLoaderComplete} />}
       {!isLoading && <CustomCursor />}
-      <main className={`app-shell ${isLoading ? "app-shell--locked" : ""}`}>
+      <div className={`app-shell ${isLoading ? "app-shell--locked" : ""}`}>
         {currentPage === "portfolio" ? (
           <>
-            <Navbar onNavigateToCertificates={() => handlePageChange("certificates")} />
-            <Hero onNavigateToCertificates={() => handlePageChange("certificates")} />
-            <Ticker />
-            <About />
-            <Skills />
-            <Projects />
-            <Experience />
-            <Contact />
+            <a className="skip-link" href="#main-content">Skip to content</a>
+            <header className="app-navigation" aria-label="Site navigation">
+              <Navbar onNavigateToCertificates={() => handlePageChange("certificates")} />
+            </header>
+            <main id="main-content" tabIndex={-1}>
+              <Hero onNavigateToCertificates={() => handlePageChange("certificates")} />
+              <Ticker />
+              <About />
+              <Skills />
+              <Projects />
+              <Experience />
+              <Contact />
+            </main>
             <Footer />
           </>
         ) : (
-          <CertificatesPage onBack={() => handlePageChange("portfolio")} />
+          <main id="main-content" tabIndex={-1}>
+            <CertificatesPage onBack={() => handlePageChange("portfolio")} />
+          </main>
         )}
-      </main>
+      </div>
     </SmoothScroll>
   );
 }

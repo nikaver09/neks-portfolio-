@@ -1,65 +1,35 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-
-const mark = ["N", "K"];
+import { motion, useReducedMotion } from "framer-motion";
+import { AbstractCubeIsometricLoader } from "./ui/abstract-cube-isometric-loader";
 
 export default function Loader({ onComplete }) {
-  const [progress, setProgress] = useState(0);
   const [leaving, setLeaving] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const startedAt = performance.now();
-    const duration = 1450;
-    let frameId;
-
-    const update = (now) => {
-      const elapsed = Math.min(1, (now - startedAt) / duration);
-      const next = (1 - ((1 - elapsed) ** 3)) * 100;
-      setProgress(next);
-
-      if (next < 100) {
-        frameId = requestAnimationFrame(update);
-        return;
-      }
-
+    let completionTimeout;
+    const exitTimeout = window.setTimeout(() => {
       setLeaving(true);
-      window.setTimeout(onComplete, 780);
-    };
+      completionTimeout = window.setTimeout(() => onComplete?.(), 780);
+    }, 1450);
 
-    frameId = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(frameId);
+    return () => {
+      window.clearTimeout(exitTimeout);
+      window.clearTimeout(completionTimeout);
+    };
   }, [onComplete]);
 
   return (
-    <div className={`site-loader ${leaving ? "site-loader--leaving" : ""}`} aria-label="Loading portfolio" aria-live="polite">
+    <div className={`site-loader ${leaving ? "site-loader--leaving" : ""}`} aria-label="Loading portfolio">
       <div className="site-loader__panel site-loader__panel--top" aria-hidden="true" />
       <div className="site-loader__panel site-loader__panel--bottom" aria-hidden="true" />
       <div className="site-loader__glow" aria-hidden="true" />
-      <div className="site-loader__topline">
-      </div>
       <motion.div
         className="site-loader__center"
-        animate={leaving ? { opacity: 0, scale: 1.06, filter: "blur(12px)" } : { opacity: 1, scale: 1, filter: "blur(0px)" }}
+        animate={leaving ? { opacity: 0, scale: reducedMotion ? 1 : 1.06 } : { opacity: 1, scale: 1 }}
         transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
       >
-        <p className="site-loader__word" aria-label="NK">
-          {mark.map((letter, index) => (
-            <span className="site-loader__letter-wrap" key={letter}>
-              <motion.span
-                className="site-loader__letter"
-                initial={{ y: "112%", rotate: 8 }}
-                animate={{ y: 0, rotate: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              >
-                {letter}
-              </motion.span>
-            </span>
-          ))}
-        </p>
-        <div className="site-loader__progress" aria-hidden="true">
-          <span style={{ transform: `scaleX(${progress / 100})` }} />
-        </div>
-        <p className="site-loader__count">{String(Math.round(progress)).padStart(3, "0")}%</p>
+        <AbstractCubeIsometricLoader dotSize={6} gap={4} speed={1.2} />
       </motion.div>
     </div>
   );

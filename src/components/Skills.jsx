@@ -1,4 +1,5 @@
 import ScrollAnimation from "./ui/scroll-animation";
+import TextScrollAnimation from "./ui/text-scroll-animation";
 
 const capabilities = [
   {
@@ -30,9 +31,10 @@ export default function Skills() {
         </ScrollAnimation>
 
         <div className="capabilities-heading">
-          <ScrollAnimation direction="left" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
-            <h2 className="section-display">DESIGNED TO<br /><em>DELIVER.</em></h2>
-          </ScrollAnimation>
+          <div>
+            <TextScrollAnimation className="section-display"
+              lines={[{ text: "DESIGNED TO" }, { text: "DELIVER.", accent: true }]} />
+          </div>
           <ScrollAnimation direction="right" delay={0.15} viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
             <p>From the interface people touch to the systems that keep it reliable, I build the full experience.</p>
           </ScrollAnimation>

@@ -29,7 +29,7 @@ export default function TextRoll({
         className
       )}
       style={{
-        lineHeight: 0.85,
+        lineHeight: 1.15,
         ...style,
       }}
       {...props}

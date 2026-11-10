@@ -144,11 +144,13 @@ export default function CertificatesPage({ onBack }) {
         .cp-heading {
           display: flex; flex-direction: column; gap: 20px;
           margin-bottom: 44px;
+          flex-wrap: wrap;
         }
         @media(min-width:768px){ .cp-heading{ flex-direction:row; align-items:flex-end; justify-content:space-between; } }
         .cp-title {
-          font-size: clamp(3.2rem, 7.4vw, 9rem);
-          font-weight: 800; letter-spacing: -0.105em; line-height: 0.78; margin: 0;
+          font-size: clamp(2rem, 7.4vw, 9rem);
+          font-weight: 800; letter-spacing: -0.065em; line-height: 1.05; margin: 0;
+          max-width: 100%; overflow-wrap: anywhere;
         }
         .cp-title em { font-style: normal; color: #d9ff3f; }
 
@@ -197,6 +199,7 @@ export default function CertificatesPage({ onBack }) {
         /* Filters */
         .cp-filters {
           display: flex; align-items: center; gap: 8px;
+          min-width: 0; max-width: 100%;
           overflow-x: auto; padding-bottom: 4px;
           -ms-overflow-style: none; scrollbar-width: none;
         }

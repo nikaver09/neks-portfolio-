@@ -1,0 +1,15 @@
+.text-scroll__lines { display: block; }
+
+.text-scroll__line {
+  display: block;
+  /* Contain the scattered letters without changing the section's dimensions. */
+  overflow: clip;
+  overflow-clip-margin: .15em;
+  perspective: 500px;
+}
+
+.text-scroll__character {
+  display: inline-block;
+  white-space: pre;
+  transform-origin: center;
+}

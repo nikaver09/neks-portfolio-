@@ -2,7 +2,7 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  min-height: max(760px, 100svh);
+  min-height: max(660px, calc(100svh - var(--navigation-height, 80px)));
   overflow: hidden;
   background: #ededed;
   color: #111;
@@ -16,10 +16,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 64px;
+  gap: 40px;
   min-width: 0;
-  padding: 132px 0 36px clamp(28px, 6vw, 104px);
+  padding: 44px 32px 32px var(--page-gutter, 5vw);
 }
+.portfolio-hero__intro { container-type: inline-size; }
 .portfolio-hero__eyebrow, .portfolio-hero__kicker, .portfolio-hero__footer, .portfolio-hero__image-caption {
   font-family: inherit;
   font-size: 11px;
@@ -35,12 +36,12 @@
 .portfolio-hero__title {
   position: relative;
   margin: 0;
-  font-size: clamp(2rem, 4.2vw, 5.5rem);
+  font-size: clamp(1rem, 11.8cqw, 5.5rem);
   font-weight: 600;
-  line-height: 1.02;
+  line-height: 1.12;
   letter-spacing: .02em;
   text-transform: uppercase;
-  -webkit-text-stroke: 1.35px currentColor;
+  -webkit-text-stroke: .7px currentColor;
   text-shadow: 0 0 20px rgb(0 0 0 / .06);
 }
 .portfolio-hero__title span { white-space: nowrap; }
@@ -65,19 +66,17 @@
 .portfolio-hero__image-caption { position: absolute; bottom: 38px; left: 12%; right: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: #fff; }
 .portfolio-hero__image-caption span:last-child { font-size: 9px; letter-spacing: .12em; }
 @media (min-width: 1600px) {
-  .portfolio-hero { min-height: 900px; }
+  .portfolio-hero { min-height: max(760px, calc(100svh - var(--navigation-height, 80px))); }
 }
 @media (max-width: 900px) {
   .portfolio-hero { grid-template-columns: minmax(0, 1fr); min-height: auto; }
-  .portfolio-hero__content { padding: 124px 28px 36px; gap: 48px; }
-  .portfolio-hero__title { font-size: clamp(1.6rem, 7.2vw, 4.5rem); }
+  .portfolio-hero__content { padding: 36px var(--page-gutter, 5vw); gap: 36px; }
+  .portfolio-hero__title { font-size: clamp(1rem, 11.8cqw, 4.5rem); }
   .portfolio-hero__subtitle { max-width: 400px; }
   .portfolio-hero__visual { height: clamp(360px, 65vw, 600px); clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%); }
   .portfolio-hero__image { object-position: center 42%; }
   .portfolio-hero__image-caption { left: 28px; right: 28px; bottom: 24px; }
 }
 @media (max-width: 380px) {
-  .portfolio-hero__content { padding-left: 20px; padding-right: 20px; }
-  .portfolio-hero__title { font-size: clamp(1.5rem, 7.2vw, 1.7rem); }
   .portfolio-hero__actions { column-gap: 18px; padding-right: 0; }
 }

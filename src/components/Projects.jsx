@@ -3,6 +3,7 @@ import { ArrowUpRight, GitBranch, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CircularCarousel } from "./ui/circular-carousel";
 import ScrollAnimation from "./ui/scroll-animation";
+import TextScrollAnimation from "./ui/text-scroll-animation";
 
 const projects = [
   {
@@ -92,12 +93,10 @@ export default function Projects() {
         </ScrollAnimation>
 
         <div className="work-heading">
-          <ScrollAnimation direction="left">
-            <h2 className="section-display section-display--dark">
-              MADE TO<br />
-              <em>MOVE.</em>
-            </h2>
-          </ScrollAnimation>
+          <div>
+            <TextScrollAnimation className="section-display section-display--dark"
+              lines={[{ text: "MADE TO" }, { text: "MOVE.", accent: true }]} />
+          </div>
           <ScrollAnimation direction="right" delay={0.1}>
             <p>Selected work across products, platforms, and useful digital experiments.</p>
           </ScrollAnimation>

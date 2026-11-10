@@ -1,4 +1,5 @@
 import ScrollAnimation from "./ui/scroll-animation";
+import TextScrollAnimation from "./ui/text-scroll-animation";
 
 const principles = [
   ["01", "Clarity over clutter", "Every screen should make the next decision feel obvious."],
@@ -15,15 +16,10 @@ export default function About() {
         </ScrollAnimation>
 
         <div className="about-layout">
-          <ScrollAnimation
-            direction="left"
-            viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
-          >
-            <h2 className="section-display section-display--dark">
-              CODE WITH<br />
-              <em>INTENT.</em>
-            </h2>
-          </ScrollAnimation>
+          <div>
+            <TextScrollAnimation className="section-display section-display--dark"
+              lines={[{ text: "CODE WITH" }, { text: "INTENT.", accent: true }]} />
+          </div>
 
           <ScrollAnimation
             direction="right"

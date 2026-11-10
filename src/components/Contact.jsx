@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { supabase } from "../lib/supabase";
 import ScrollAnimation from "./ui/scroll-animation";
+import TextScrollAnimation from "./ui/text-scroll-animation";
 
 const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
@@ -56,18 +57,15 @@ export default function Contact() {
         </ScrollAnimation>
 
         <div className="contact-layout">
-          <ScrollAnimation
-            direction="left"
-            viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}
-            className="contact-copy"
-          >
-            <h2 className="section-display">HAVE A GOOD<br /><em>IDEA?</em></h2>
+          <div className="contact-copy">
+            <TextScrollAnimation className="section-display"
+              lines={[{ text: "HAVE A GOOD" }, { text: "IDEA?", accent: true }]} />
             <p>Whether it&apos;s a product to ship, a role to discuss, or a problem worth solving, I&apos;d love to hear it.</p>
             <div className="contact-details">
               <a href="mailto:nkavs777@gmail.com"><Mail size={17} /> NKAVS777@GMAIL.COM <ArrowUpRight size={14} /></a>
               <span><MapPin size={17} /> PHILIPPINES / OPEN TO REMOTE</span>
             </div>
-          </ScrollAnimation>
+          </div>
 
           <ScrollAnimation
             direction="right"

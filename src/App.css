@@ -2,10 +2,15 @@
 .app-shell {
   --page-gutter: clamp(20px, 5vw, 80px);
   --navigation-height: 80px;
+  --section-space: clamp(32px, 4vw, 56px);
   min-height: 100dvh;
 }
 
 .app-shell--locked { height: 100dvh; }
+
+/* Reserve the header's actual height in the document flow. */
+.app-navigation + main { padding-top: var(--navigation-height); }
+.app-shell .section { padding-block: var(--section-space); }
 
 .app-navigation {
   position: fixed;
@@ -19,9 +24,11 @@
 .app-navigation > button {
   position: absolute;
   top: 16px;
-  left: max(8px, calc(var(--page-gutter) - 12px));
+  left: var(--page-gutter);
   width: 48px;
   height: 48px;
+  border: 1px solid var(--line-dark);
+  border-radius: 14px;
 }
 
 .app-navigation > button:focus-visible {
@@ -48,6 +55,7 @@
 }
 
 .app-shell .section-shell { padding-inline: var(--page-gutter); }
+.app-shell .section-shell > * { min-width: 0; }
 
 .app-shell .section-marker {
   flex-wrap: wrap;
@@ -71,6 +79,7 @@
 .app-shell .experience-heading {
   grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
   gap: clamp(32px, 5vw, 80px);
+  padding-block: clamp(32px, 4vw, 56px);
 }
 
 /* Fit each heading to its column rather than the entire viewport. */
@@ -88,6 +97,21 @@
 }
 
 .app-shell .about-copy { max-width: 440px; }
+
+.app-shell .principles-grid,
+.app-shell .capabilities-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.app-shell .principle {
+  min-width: 0;
+  min-height: 0;
+  padding-block: 24px;
+}
+.app-shell .principle h3 { margin: 28px 0 12px; line-height: 1.3; }
+.app-shell .principle p { font-size: 14px; line-height: 1.65; }
+.app-shell .capability { min-width: 0; min-height: 0; padding-block: 24px; }
+.app-shell .capability h3 { margin: 32px 0 16px; line-height: 1.15; }
+.app-shell .capability > p { margin-bottom: 24px; line-height: 1.65; }
+.app-shell .capability ul { margin-top: auto; }
 
 .app-shell .about-copy p,
 .capabilities-heading > div > p,
@@ -108,7 +132,15 @@
 .app-shell .contact-layout {
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(32px, 5vw, 80px);
+  padding-top: clamp(32px, 4vw, 56px);
 }
+
+.app-shell .contact-copy { min-height: 360px; }
+.app-shell .contact-panel { display: flex; flex-direction: column; min-height: 360px; }
+.app-shell .contact-panel > * { flex: 1; min-width: 0; }
+.app-shell .contact-panel__closed { height: auto; gap: 32px; }
+.app-shell .contact-panel .button { max-width: 100%; flex-wrap: wrap; line-height: 1.5; }
+.app-shell .contact-panel__message { height: auto; }
 
 .app-shell .contact-panel__message h3 {
   font-size: clamp(2rem, 4vw, 4rem);
@@ -131,9 +163,17 @@
 }
 
 .app-shell .site-footer {
+  padding-top: clamp(40px, 6vw, 80px);
   padding-inline: var(--page-gutter);
   container-type: inline-size;
 }
+
+.app-shell .site-footer__bottom { margin-top: 40px; }
+.app-shell .site-footer__bottom:empty { display: none; }
+.app-shell .experience-row { padding-block: 24px; line-height: 1.5; }
+.app-shell .experience-row h3 { line-height: 1.25; }
+.app-shell .experience-row p,
+.app-shell .experience-row time { overflow-wrap: anywhere; }
 
 .app-shell .site-footer__headline {
   font-size: clamp(2rem, 8.5cqw, 9rem);
@@ -152,7 +192,6 @@
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: 32px;
-    padding-top: 48px;
   }
 
   .app-shell .section-display {
@@ -187,7 +226,6 @@
 @media (max-width: 600px) {
   .app-shell { --navigation-height: 72px; }
   .app-navigation > button { top: 12px; }
-  .app-shell .section { padding-block: 64px; }
 
   .app-shell .about-layout,
   .app-shell .capabilities-heading,
@@ -209,22 +247,4 @@
     gap: 32px;
   }
 
-  /* Keep the hero surname and metadata inside a narrow phone. */
-  #hero h1 {
-    font-size: clamp(1.5rem, 7vw, 2.625rem);
-    letter-spacing: 0;
-  }
-
-  #hero h1 > span { margin-left: 0; }
-
-  #hero .font-tech.text-xs {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-  }
-
-  #hero .relative.w-72.h-72 {
-    width: min(16rem, calc(100vw - 96px));
-    height: auto;
-    aspect-ratio: 1;
-  }
 }

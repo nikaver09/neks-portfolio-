@@ -4,6 +4,7 @@ import {
   HTMLMotionProps,
   SVGMotionProps,
   Variant,
+  useReducedMotion,
 } from 'motion/react';
 import React, { forwardRef } from 'react';
 
@@ -61,6 +62,7 @@ const component = forwardRef<HTMLDivElement, componentProps>(
     },
     ref
   ) => {
+    const reducedMotion = useReducedMotion();
     const baseVariants = variants || generateVariants(direction);
     const modifiedVariants = {
       hidden: baseVariants.hidden,
@@ -77,9 +79,10 @@ const component = forwardRef<HTMLDivElement, componentProps>(
       <motion.div
         ref={ref}
         whileInView='visible'
-        initial='hidden'
+        initial={reducedMotion ? false : 'hidden'}
+        animate={reducedMotion ? 'visible' : undefined}
         variants={modifiedVariants}
-        viewport={viewport}
+        viewport={{ ...defaultViewport, ...viewport }}
         className={cn(className)}
         {...rest}
       >

@@ -1,5 +1,6 @@
 import GithubContributions from "./GithubContributions";
 import ScrollAnimation from "./ui/scroll-animation";
+import TextScrollAnimation from "./ui/text-scroll-animation";
 
 const experiences = [
   ["Senior Frontend Developer", "TechCorp Inc.", "2023 — Present", "React · TypeScript · AWS"],
@@ -17,9 +18,10 @@ export default function Experience() {
         </ScrollAnimation>
 
         <div className="experience-heading">
-          <ScrollAnimation direction="left" viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
-            <h2 className="section-display section-display--dark">WORK IN<br /><em>PROGRESS.</em></h2>
-          </ScrollAnimation>
+          <div>
+            <TextScrollAnimation className="section-display section-display--dark"
+              lines={[{ text: "WORK IN" }, { text: "PROGRESS.", accent: true }]} />
+          </div>
           <ScrollAnimation direction="right" delay={0.15} viewport={{ amount: 0.2, margin: "0px 0px -50px 0px" }}>
             <p>A few roles and environments that have shaped how I make things.</p>
           </ScrollAnimation>
